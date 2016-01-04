@@ -25,12 +25,13 @@ class ActivitiesController < ApplicationController
   end
 
   private
+
   def activity_params
     params.require(:activity).permit(
-    :activity_name,
-    :description,
-    :venue_id,
-    :price_range
+      :activity_name,
+      :description,
+      :venue_id,
+      :price_range
     )
   end
 end
