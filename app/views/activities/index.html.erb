@@ -1,0 +1,18 @@
+<div class="full-height bg-img">
+<div class="row">
+  <div class="small-12 medium-10 medium-centered large-8 large-centered columns">
+
+    <div class="floating-container">
+      <h1>Activities</h1>
+    </div>
+    <div class="floating-container">
+      <% @activities.each do |activity| %>
+    </h4><%= link_to activity.activity_name, activity_path(activity) %></h4>
+      <% end %>
+    </div>
+    <div class="text-center">
+      <a href="<%= new_activity_path %>" class="button">Add a New Activity!</a>
+    </div>
+  </div>
+</div>
+</div>
