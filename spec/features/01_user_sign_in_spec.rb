@@ -1,22 +1,18 @@
 require 'rails_helper'
 
 feature "sees sign in options" do
-  scenario "see all sign in options" do
-    visit user_index_path
-    expect(page).to have_content('Sign In')
-    expect(page).to have_content('Sign Out')
-  end
-
-  scenario "user successfully signs in" do
+  scenario "signs up" do
     user = FactoryGirl.create(:email)
-    user_password = FactoryGirl.create(:password)
-
-    visit user_sign_in_path
-    click_on 'Sign In'
+    visit '/'
+    expect(page).to have_content('Log in')
     fill_in 'Email', :with => user
     fill_in 'Password', :with => user_password
+  end
 
-    expect(page).to have_content(user.email)
+  scenario "user is already signed" do
+    visit '/'
+    expect(page).to have_content('Sign in')
+    expect(page).to have_content('Sign out')
   end
 
   scenario "user successfully signs out" do
