@@ -8,7 +8,7 @@ class UsersController < ActionController::Base
   end
 
   def destroy
-    redirect '/'
+    redirect_to '/'
   end
 
 end
