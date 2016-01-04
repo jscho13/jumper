@@ -1,9 +1,9 @@
 require 'factory_girl_rails'
+FactoryGirl.find_definitions
 
 FactoryGirl.define do
   factory :user do
-    username "mcho1ampa"
-    sequence(:username) { |n| "The answer to your question is located in the docs#{n}." }
-    sequence(:question_id) { |n| n-1 }
+    email "jscho13@gmail.com"
+    password "Applied91"
   end
 end
