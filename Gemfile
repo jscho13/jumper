@@ -24,7 +24,6 @@ gem 'rspec-rails'
 gem 'dotenv-rails'
 gem 'devise'
 gem 'database_cleaner'
-gem 'faker'
 gem 'pry-rails'
 
 # Use ActiveModel has_secure_password
@@ -47,6 +46,7 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rspec'
+  gem 'faker'
 
 end
 
