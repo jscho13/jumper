@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="small-12 medium-10 medium-centered large-8 large-centered columns">
+    <h1>New Review Form</h1>
+
+    <%= form_for(@review) do |f| %>
+
+    <div>
+      <%= f.label :rating %>
+      <%= f.collection_radio_buttons(:rating, @quantity_collection, :first, :last) %>
+    </div>
+
+    <div class="field">
+      <%= f.label :review_body, "Review Description" %><br />
+      <%= f.text_field :review_body %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Add review" %>
+    </div>
+    <% end %>
+  </div>
+</div>
