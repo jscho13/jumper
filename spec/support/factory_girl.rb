@@ -3,13 +3,8 @@ FactoryGirl.find_definitions
 
 FactoryGirl.define do
   factory :user do
-<<<<<<< HEAD
-    username "SayWhaaaaatttt"
-    email "a@gmail.com"
-    password "applesTV"
-=======
+    sequence(:username) { |n| "SayWhaaaaatttt#{n}" }
     sequence(:email) { |n| "faketestuser#{n}@example.com" }
-    # email {Faker::Internet.email}
     password {Faker::Internet.password}
   end
 
@@ -24,6 +19,5 @@ FactoryGirl.define do
     review_body {Faker::Hipster.paragraph}
     activity
     user
->>>>>>> master
   end
 end
