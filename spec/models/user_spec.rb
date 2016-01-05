@@ -7,24 +7,22 @@ describe User do
 
   it "validates for an correct password length" do
     user = FactoryGirl.create(:user)
-
     expect(user).to be_valid
   end
 
   it "validates for a non-unique username" do
-    FactoryGirl.create(:user)
-    expect(FactoryGirl.build(:user, username: "SayWhaaaaatttt5")).to_not be_valid
+    user = FactoryGirl.create(:user)
+    expect(FactoryGirl.build(:user, username: user.username)).to_not be_valid
   end
 
   it "validates for a unique username" do
     user = FactoryGirl.create(:user)
-
     expect(user).to be_valid
   end
 
   it "validates for a non-unique email" do
-    FactoryGirl.create(:user)
-    expect(FactoryGirl.build(:user, email: "faketestuser8@example.com")).to_not be_valid
+    user = FactoryGirl.create(:user)
+    expect(FactoryGirl.build(:user, email: user.email)).to_not be_valid
   end
 
   it "validates for a unique email" do

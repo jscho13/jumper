@@ -48,8 +48,6 @@ group :test do
   gem 'launchy'
   gem 'rspec'
   gem 'faker'
-
-
 end
 
 group :development do
