@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "sees sign in options" do
   scenario "see all sign in options" do
-    visit user_index_path
+    visit root_path
     expect(page).to have_content('Sign In')
     expect(page).to have_content('Sign Out')
   end
