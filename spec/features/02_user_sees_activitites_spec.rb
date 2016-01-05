@@ -36,13 +36,12 @@ feature "user sees a list of his/her activities" do
   scenario "add new activity" do
     visit new_activity_path
 
-    fill_in "Activity Name", with: "Bouldering"
-    fill_in "Description", with: "Climb 25 feet wall with only your bare hands"
-    fill_in "Venue", with: "Central Rock Gym"
+    fill_in "Activity Name", with: "Central Rock Gym"
+    fill_in "Description", with: "Bouldering, Rock climbing"
     fill_in "Price Range", with: "$$"
 
     click_button "Add Activity"
 
-    expect(page).to have_content "Bouldering"
+    expect(page).to have_content "Central Rock Gym"
   end
 end

@@ -2,7 +2,7 @@
   <div class="small-12 medium-10 medium-centered large-8 large-centered columns">
     <h1>New Review Form</h1>
 
-    <%= form_for(@review) do |f| %>
+    <%= form_for [@activity, @review] do |f| %>
 
     <div>
       <%= f.label :rating %>
@@ -10,8 +10,8 @@
     </div>
 
     <div class="field">
-      <%= f.label :review_body, "Review Description" %><br />
-      <%= f.text_field :review_body %>
+      <%= f.label :review_body, "Your Review" %><br />
+      <%= f.text_area :review_body %>
     </div>
 
     <div class="actions">

@@ -8,14 +8,14 @@ FactoryGirl.define do
   end
 
   factory :activity do
-    activity_name { Faker::Hipster.word }
-    description { Faker::Hipster.paragraph }
+    activity_name { Faker::Company.name }
+    description { Faker::Company.catch_phrase }
     price_range "2"
   end
 
   factory :review do
     rating 5
-    review_body { Faker::Hipster.paragraph }
+    review_body { Faker::Lorem.paragraph }
     activity
     user
   end

@@ -5,7 +5,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
-    # @reviews = @activity.reviews
+    @reviews = @activity.reviews
   end
 
   def new
