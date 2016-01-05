@@ -5,7 +5,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
-    @tasks = @activity.tasks
+    # @reviews = @activity.reviews
   end
 
   def new
@@ -14,7 +14,6 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = Activity.new(activity_params)
-    @activity.user_id = session[:user_id]
     if @activity.save
       flash.notice = "Activity added successfully"
       redirect_to activities_path
