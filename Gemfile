@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+ruby '2.2.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use postgresql as the database for Active Record
@@ -24,6 +24,8 @@ gem 'rspec-rails'
 gem 'dotenv-rails'
 gem 'devise'
 gem 'database_cleaner'
+gem 'faker'
+gem 'pry-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -44,6 +46,8 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'launchy'
+  gem 'rspec'
+
 end
 
 group :development do

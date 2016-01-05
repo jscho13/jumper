@@ -15,7 +15,7 @@ feature "sees sign in options" do
     fill_in 'Password', with: user.password
     click_on 'Log in'
     expect(page).to have_content('Sign In')
-    expect(page).to have_content('Users')
+    expect(page).to have_content('Signed in successfully.')
   end
 
   scenario "user successfully signs out" do
@@ -26,7 +26,18 @@ feature "sees sign in options" do
     fill_in 'Password', with: user.password
     click_on 'Log in'
     click_on 'Sign Out'
-    expect(page).to have_content('Users')
+    expect(page).to have_content('Signed out successfully.')
   end
 
+  scenario "user can sign up" do
+    visit '/'
+    click_on 'Sign In'
+    click_on 'Sign up'
+    fill_in 'Username', with: Faker::Internet.user_name
+    fill_in 'Email', with: Faker::Internet.email
+    fill_in 'Password', with: 'hello1234TEST'
+    fill_in 'Password confirmation', with: 'hello1234TEST'
+    click_on 'Sign up'
+    expect(page).to have_content('Welcome! You have signed up successfully.')
+  end
 end
