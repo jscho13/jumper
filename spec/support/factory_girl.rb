@@ -3,8 +3,8 @@ FactoryGirl.find_definitions
 
 FactoryGirl.define do
   factory :user do
+    sequence(:username) { |n| "SayWhaaaaatttt#{n}" }
     sequence(:email) { |n| "faketestuser#{n}@example.com" }
-    # email {Faker::Internet.email}
     password {Faker::Internet.password}
   end
 
