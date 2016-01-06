@@ -8,8 +8,9 @@ require 'rspec/rails'
 require 'factory_girl_rails'
 require 'database_cleaner'
 
-Dir[__dir__ + '/support/*.rb'].each { |file| require_relative file }
 # Add additional requires below this line. Rails is not loaded until this point!
+Dir[__dir__ + '/support/*.rb'].each { |file| require_relative file }
+Dir[__dir__ + '/support/**/*.rb'].each { |f| require f }
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -58,4 +59,16 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.infer_spec_type_from_file_location!
+  config.include AuthenticationHelper
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    # Choose a test framework:
+    with.test_framework :rspec
+
+    # Or, choose the following (which implies all of the above):
+    with.library :rails
+  end
 end
