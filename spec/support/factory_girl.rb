@@ -11,6 +11,10 @@ FactoryGirl.define do
   factory :venue do
     venue_name { Faker::Hipster.word }
     description { Faker::Hipster.paragraph }
+    street_name { Faker::Address.street_address }
+    state { Faker::Address.state }
+    zip_code { Faker::Address.zip[0..4] }
+    city { Faker::Address.city }
     price_range "2"
   end
 

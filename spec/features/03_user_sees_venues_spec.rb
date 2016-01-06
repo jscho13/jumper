@@ -11,7 +11,7 @@ feature "user sees a list of his/her venues" do
     @skyzone = FactoryGirl.create(:venue)
   end
 
-  xscenario "sees a list of venues and link for new venue" do
+  scenario "sees a list of venues and link for new venue" do
     visit venues_path
 
     expect(page).to have_content @bodaborg.venue_name
@@ -22,7 +22,7 @@ feature "user sees a list of his/her venues" do
     expect(page).to have_content "New Venue Form"
   end
 
-  xscenario "clicks link and is taken to show page for given venue" do
+  scenario "clicks link and is taken to show page for given venue" do
     visit venues_path
 
     click_link @bodaborg.venue_name
@@ -30,19 +30,21 @@ feature "user sees a list of his/her venues" do
     expect(page).to have_content @bodaborg.venue_name
     expect(page).to have_content @bodaborg.description
 
-    click_link "All Activities"
+    click_link "All Venues"
   end
 
-  xscenario "add new venue" do
+  scenario "add new venue" do
     visit new_venue_path
-
-    fill_in "Venue Name", with: "Bouldering"
+    fill_in "Venue Name", with: "Central Rock Gym"
     fill_in "Description", with: "Climb 25 feet wall with only your bare hands"
-    fill_in "Venue", with: "Central Rock Gym"
+    fill_in "Street Address", with: "100 roadville ln"
+    fill_in "State", with: "MA"
+    fill_in "Zip Code", with: "12345"
+    fill_in "City", with: "Citytown"
     fill_in "Price Range", with: "$$"
 
     click_button "Add Venue"
 
-    expect(page).to have_content "Bouldering"
+    expect(page).to have_content "Central Rock Gym"
   end
 end

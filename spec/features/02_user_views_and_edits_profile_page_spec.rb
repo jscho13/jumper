@@ -3,7 +3,6 @@ require 'rails_helper'
 feature "user can view their profile" do
   scenario "user visits user profile page" do
     user = FactoryGirl.create(:user)
-    visit '/'
     sign_in_as(user)
     visit "/users/#{user.id}"
 
@@ -12,7 +11,6 @@ feature "user can view their profile" do
 
   scenario "user can edit their profile" do
     user = FactoryGirl.create(:user)
-    visit '/'
     sign_in_as(user)
     visit "/users/#{user.id}"
     click_on "Edit Profile"
@@ -22,7 +20,6 @@ feature "user can view their profile" do
 
   scenario "user can successfully edit their username" do
     user = FactoryGirl.create(:user)
-    visit '/'
     sign_in_as(user)
     visit "/users/#{user.id}"
     click_on "Edit Profile"
