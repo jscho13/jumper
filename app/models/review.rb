@@ -5,9 +5,9 @@ class Review < ActiveRecord::Base
     greater_than_or_equal_to: 1,
     less_than_or_equal_to: 5,
   }
-  validates :activity_id, presence: true
+  validates :venue_id, presence: true
   validates :user_id, presence: true
 
-  belongs_to :activity
+  belongs_to :venue
   belongs_to :user
 end

@@ -1,30 +1,30 @@
 require 'rails_helper'
 
-# [] Visiting the `/activities` path should contain a list of restaurants.
-# [] Visiting the `/activities/10 path should show the details for a activity with the ID of 10.
-# [] Visiting the root path should display a list of all activities.
+# [] Visiting the `/venues` path should contain a list of restaurants.
+# [] Visiting the `/venues/10 path should show the details for a venue with the ID of 10.
+# [] Visiting the root path should display a list of all venues.
 
 feature "user sees a list of reviews for the given acitivty" do
   before(:each) do
-    @activity1 = FactoryGirl.create(:activity)
-    @a_review = FactoryGirl.create(:review, activity_id: @activity1.id)
-    @b_review = FactoryGirl.create(:review, activity_id: @activity1.id)
+    @venue = FactoryGirl.create(:venue)
+    @a_review = FactoryGirl.create(:review, venue_id: @venue.id)
+    @b_review = FactoryGirl.create(:review, venue_id: @venue.id)
   end
 
-  scenario "clicks link and is taken to show page for given activity" do
-    visit activities_path
-    click_link @activity1.activity_name
+  scenario "clicks link and is taken to show page for given venue" do
+    visit venues_path
+    click_link @venue.venue_name
 
-    expect(page).to have_content @activity1.activity_name
-    expect(page).to have_content @activity1.description
+    expect(page).to have_content @venue.venue_name
+    expect(page).to have_content @venue.description
     expect(page).to have_content @a_review.review_body
 
-    click_link "All Activities"
+    click_link "All Venues"
   end
 
   scenario "submit a new review" do
-    visit activities_path
-    click_link @activity1.activity_name
+    visit venues_path
+    click_link @venue.venue_name
     click_link "Add a New Review"
 
     choose "4"
