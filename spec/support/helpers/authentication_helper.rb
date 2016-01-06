@@ -11,8 +11,8 @@ module AuthenticationHelper
     visit '/'
     click_link 'Sign In'
     click_on 'Sign up'
-    fill_in 'Username', with: user.username+"1"
-    fill_in 'Email', with: user.email+"1"
+    fill_in 'Username', with: user.username + "1"
+    fill_in 'Email', with: user.email + "1"
     fill_in 'Password', with: user.password
     fill_in 'Password confirmation', with: user.password
     click_on 'Sign up'
