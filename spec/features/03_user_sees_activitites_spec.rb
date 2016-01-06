@@ -11,7 +11,7 @@ feature "user sees a list of his/her venues" do
     @skyzone = FactoryGirl.create(:venue)
   end
 
-  scenario "sees a list of venues and link for new venue" do
+  xscenario "sees a list of venues and link for new venue" do
     visit venues_path
 
     expect(page).to have_content @bodaborg.venue_name
@@ -22,7 +22,7 @@ feature "user sees a list of his/her venues" do
     expect(page).to have_content "New Venue Form"
   end
 
-  scenario "clicks link and is taken to show page for given venue" do
+  xscenario "clicks link and is taken to show page for given venue" do
     visit venues_path
 
     click_link @bodaborg.venue_name
@@ -33,7 +33,7 @@ feature "user sees a list of his/her venues" do
     click_link "All Activities"
   end
 
-  scenario "add new venue" do
+  xscenario "add new venue" do
     visit new_venue_path
 
     fill_in "Venue Name", with: "Bouldering"
