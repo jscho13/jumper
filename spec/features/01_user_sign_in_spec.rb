@@ -4,14 +4,12 @@ feature "sees sign in options" do
   scenario "user visits index page" do
     visit '/'
     expect(page).to have_content('Sign In')
-    expect(page).to have_content('Sign Out')
   end
 
   scenario "user succesfully signs in" do
     user = FactoryGirl.create(:user)
     visit '/'
     sign_in_as(user)
-    expect(page).to have_content('Sign In')
     expect(page).to have_content('Signed in successfully.')
   end
 

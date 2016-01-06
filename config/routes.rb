@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :venues do
-    resources :reviews 
+    resources :reviews
   end
   devise_for :users
 
