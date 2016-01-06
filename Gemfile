@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+ruby '2.2.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use postgresql as the database for Active Record
@@ -20,10 +20,10 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'rspec-rails'
 gem 'dotenv-rails'
 gem 'devise'
 gem 'database_cleaner'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -37,13 +37,17 @@ gem 'database_cleaner'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry-rails'
+  gem 'rspec-rails'
 end
 
 group :test do
+  gem 'shoulda-matchers', '~> 3.0'
   gem 'coveralls', require: false
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'launchy'
+  gem 'rspec'
   gem 'faker'
 end
 
