@@ -23,6 +23,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'dotenv-rails'
 gem 'devise'
 gem 'database_cleaner'
+gem 'foundation-rails'
 
 
 # Use ActiveModel has_secure_password
