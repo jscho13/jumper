@@ -10,10 +10,7 @@ feature "sees sign in options" do
   scenario "user succesfully signs in" do
     user = FactoryGirl.create(:user)
     visit '/'
-    click_on 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_on 'Log in'
+    sign_in_as(user)
     expect(page).to have_content('Sign In')
     expect(page).to have_content('Signed in successfully.')
   end
@@ -21,10 +18,7 @@ feature "sees sign in options" do
   scenario "user successfully signs out" do
     user = FactoryGirl.create(:user)
     visit '/'
-    click_on 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_on 'Log in'
+    sign_in_as(user)
     click_on 'Sign Out'
     expect(page).to have_content('Signed out successfully.')
   end

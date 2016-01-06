@@ -42,6 +42,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'shoulda-matchers', '~> 3.0'
   gem 'coveralls', require: false
   gem 'factory_girl_rails'
   gem 'capybara'

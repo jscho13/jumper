@@ -4,10 +4,7 @@ feature "user can view their profile" do
   scenario "user visits user profile page" do
     user = FactoryGirl.create(:user)
     visit '/'
-    click_on 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_on 'Log in'
+    sign_in_as(user)
     visit "/users/#{user.id}"
 
     expect(page).to have_content(user.username)
@@ -16,10 +13,7 @@ feature "user can view their profile" do
   scenario "user can edit their profile" do
     user = FactoryGirl.create(:user)
     visit '/'
-    click_on 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_on 'Log in'
+    sign_in_as(user)
     visit "/users/#{user.id}"
     click_on "Edit Profile"
 
@@ -29,10 +23,7 @@ feature "user can view their profile" do
   scenario "user can successfully edit their username" do
     user = FactoryGirl.create(:user)
     visit '/'
-    click_on 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_on 'Log in'
+    sign_in_as(user)
     visit "/users/#{user.id}"
     click_on "Edit Profile"
     fill_in "Username", with: "wasbaiii"
