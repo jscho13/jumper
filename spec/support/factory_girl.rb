@@ -8,8 +8,8 @@ FactoryGirl.define do
     password {Faker::Internet.password}
   end
 
-  factory :activity do
-    activity_name {Faker::Hipster.word}
+  factory :venue do
+    venue_name {Faker::Hipster.word}
     description {Faker::Hipster.paragraph}
     price_range "2"
   end
@@ -17,7 +17,7 @@ FactoryGirl.define do
   factory :review do
     rating 5
     review_body {Faker::Hipster.paragraph}
-    activity
+    venue
     user
   end
 end
