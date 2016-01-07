@@ -13,11 +13,7 @@ feature "user sees a list of reviews for the given acitivty" do
     visit venues_path
     click_link venue.venue_name
 
-    expect(page).to have_content venue.venue_name
-    expect(page).to have_content venue.description
     expect(page).to have_content review.review_body
-
-    click_link "All Venues"
   end
 
   scenario "submit a new review" do
