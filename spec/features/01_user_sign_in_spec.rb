@@ -22,14 +22,16 @@ feature "sees sign in options" do
   end
 
   scenario "user can sign up" do
+    user = FactoryGirl.build(:user)
     visit '/'
-    click_on 'Sign In'
+    click_link 'Sign In'
     click_on 'Sign up'
-    fill_in 'Username', with: Faker::Internet.user_name
-    fill_in 'Email', with: Faker::Internet.email
-    fill_in 'Password', with: 'hello1234TEST'
-    fill_in 'Password confirmation', with: 'hello1234TEST'
+    fill_in 'Username', with: user.username
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    fill_in 'Password confirmation', with: user.password
     click_on 'Sign up'
+
     expect(page).to have_content('Welcome! You have signed up successfully.')
   end
 end
