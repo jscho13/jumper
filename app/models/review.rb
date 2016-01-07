@@ -10,4 +10,7 @@ class Review < ActiveRecord::Base
 
   belongs_to :venue
   belongs_to :user
+
+  include PgSearch
+  pg_search_scrope :search_by_review_body, against: :review_body
 end

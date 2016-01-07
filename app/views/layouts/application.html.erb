@@ -28,12 +28,14 @@
       <ul class="right">
         <li class="has-form">
           <div class="row collapse">
-            <div class="large-8 small-9 columns">
-              <input type="text" placeholder="Find Stuff">
-            </div>
-            <div class="large-4 small-3 columns">
-              <a href="#" class="alert button expand">Search</a>
-            </div>
+            <%= form_for :venue do |f| %>
+              <div class="large-8 small-9 columns">
+                <%= f.text_field :attr, placeholder: "Find Stuff" %>
+              </div>
+              <div class="large-4 small-3 columns">
+                <%= f.submit "Search" %>
+              </div>
+            <% end %>
           </div>
         </li>
         <li class="has-dropdown">
