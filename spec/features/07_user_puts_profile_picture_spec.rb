@@ -17,6 +17,6 @@ feature "profile photo" do
     user = User.last
     expect(page).to have_content("Welcome! You have signed up successfully.")
     expect(page).to have_xpath(
-    "//img[@src=\"/uploads/user/avatar/#{user.id}/doge.jpeg\"]")
+      "//img[@src=\"/uploads/user/avatar/#{user.id}/doge.jpeg\"]")
   end
 end
