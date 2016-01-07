@@ -23,8 +23,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'dotenv-rails'
 gem 'devise'
 gem 'database_cleaner'
-gem 'fog'
-gem 'carrierwave'
 gem 'foundation-rails'
 
 # Use ActiveModel has_secure_password
@@ -40,6 +38,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-rails'
   gem 'byebug'
+  gem 'pry-rails'
   gem 'rspec-rails'
 end
 
