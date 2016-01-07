@@ -28,12 +28,12 @@
       <ul class="right">
         <li class="has-form">
           <div class="row collapse">
-            <%= form_for :venue do |f| %>
+            <%= form_for venues_path, method: :get do %>
               <div class="large-8 small-9 columns">
-                <%= f.text_field :attr, placeholder: "Find Stuff" %>
+                <%= text_field_tag :query, params[:query] %>
               </div>
               <div class="large-4 small-3 columns">
-                <%= f.submit "Search" %>
+                <%= submit_tag "Search", name: nil %>
               </div>
             <% end %>
           </div>
