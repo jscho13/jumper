@@ -23,6 +23,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'dotenv-rails'
 gem 'devise'
 gem 'database_cleaner'
+gem 'fog'
 gem 'carrierwave'
 
 # Use ActiveModel has_secure_password
@@ -39,6 +40,7 @@ group :development, :test do
   gem 'byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'dotenv-rails'
 end
 
 group :test do
