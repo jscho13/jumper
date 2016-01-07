@@ -24,6 +24,7 @@ gem 'dotenv-rails'
 gem 'devise'
 gem 'database_cleaner'
 gem 'foundation-rails'
+gem 'yelp', require: 'yelp'
 
 
 # Use ActiveModel has_secure_password
