@@ -1,10 +1,13 @@
 class VenuesController < ApplicationController
   def index
-    @venues = Venue.all
+    if params[:query]
+      @venues = PgSearch.multisearch(params[:query])
+    else
+      @venues = Venue.all
+    end
   end
 
   def show
-    @results = PgSearch.multisearch(params[:query])
     @venue = Venue.find(params[:id])
     @reviews = @venue.reviews
   end

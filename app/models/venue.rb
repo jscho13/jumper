@@ -10,4 +10,5 @@ class Venue < ActiveRecord::Base
 
   include PgSearch
   multisearchable against: [:venue_name, :street_name, :city, :state, :zip_code]
+  PgSearch::Multisearch.rebuild(Venue)
 end

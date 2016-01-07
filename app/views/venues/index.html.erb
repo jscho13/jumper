@@ -6,8 +6,14 @@
       <h1>Venues</h1>
     </div>
     <div class="floating-container">
-      <% @venues.each do |venue| %>
-    </h4><%= link_to venue.venue_name, venue_path(venue) %></h4>
+      <% if @venues.class == Venue::ActiveRecord_Relation %>
+        <% @venues.each do |venue| %>
+      </h4><%= link_to venue.venue_name, venue_path(venue) %></h4>
+        <% end %>
+        <% else %>
+        <% @venues.each do |venue| %>
+      </h4><%= link_to venue.content, venue_path(venue) %></h4>
+        <% end %>
       <% end %>
     </div>
     <div class="text-center">

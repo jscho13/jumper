@@ -13,4 +13,5 @@ class Review < ActiveRecord::Base
 
   include PgSearch
   pg_search_scrope :search_by_review_body, against: :review_body
+  PgSearch::Multisearch.rebuild(Review)
 end
