@@ -1,11 +1,21 @@
+<%= javascript_include_tag "reviewvotes"%>
+
 <h1><%= @venue.venue_name %></h1>
 <p><%= @venue.description %></p>
 <ul>
+  <h3>Reviews for <%=@venue.venue_name%>:</h3>
   <% @reviews.each do |review| %>
   <li> <%= review.review_body %></li>
   <%= review.rating %>
+  <li><%= Vote.where("voteable_id = ? AND vote = ?", review.id, true ).count %></li>
+  <li><%= downvotes = Vote.where("voteable_id = ? AND vote = ?", review.id, false ).count %></li>
+  <div class="buttons">
+    <%= button_to "Upvote", venue_path, method: :put, form_class: "upvote_button", name: "upvote#{review.id}" %>
+    <%= button_to "Downvote", venue_path, method: :put, form_class: "downvote_button", name: "downvote#{review.id}" %>
+  </div>
   <% end %>
 </ul>
+
 
 <div class="text-center">
   <a href="<%= new_venue_review_path(@venue) %>" class="button">Add a New Review</a>
@@ -13,3 +23,12 @@
   <div class="text-center">
     <a href="<%= venues_path %>" class="button">All Venues</a>
   </div>
+
+
+<% if false %>
+<!--
+  <div class="upvote">
+    <%= button_to_function "✓", '$(this).toggleClass("buttonGrey buttonGreen");', :class => "buttonGrey" %>
+  </div> -->
+
+<% end %>
