@@ -3,7 +3,7 @@ require 'rails_helper'
 feature "user deletes their account" do
   scenario "user wants to delete their account" do
     user = FactoryGirl.create(:user)
-    sign_up_as(user)
+    sign_in_as(user)
     click_on "Profile"
     click_on "Edit Profile"
     click_on "Cancel My Account"
