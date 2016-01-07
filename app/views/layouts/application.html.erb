@@ -44,6 +44,7 @@
           </ul>
         </li>
         <% if user_signed_in? %>
+        <li class="picture"><%= image_tag(current_user.avatar) %></li>
         <li><%= link_to "Profile", "/users/#{current_user.id}" %></li>
         <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
         <% else %>
@@ -81,7 +82,9 @@
   <div class="flash <%= key %>"><%= value %></div>
   <% end %>
 
-  <%= yield %>
+  <div class="container row">
+    <%= yield %>
+  </div>
   <!-- close the off-canvas menu -->
   <a class="exit-off-canvas"></a>
 
