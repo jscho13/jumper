@@ -1,20 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Jumper</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "vendor/modernizr" %>
+  <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
+
 </head>
+
 <body>
 
-<% flash.each do |key, value| %>
-    <div class="flash <%= key %>"><%= value %></div>
-<% end %>
+  <nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="#">Jumper</a></h1>
+      </li>
+    </ul>
 
-<div class="container row">
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="has-form">
+          <div class="row collapse">
+            <div class="large-8 small-9 columns">
+              <input type="text" placeholder="Find Stuff">
+            </div>
+            <div class="large-4 small-3 columns">
+              <a href="#" class="alert button expand">Search</a>
+            </div>
+          </div>
+        </li>
+        <li class="has-dropdown">
+          <a href="#">Filter by Boston Neighborhood</a>
+          <ul class="dropdown">
+            <li><a href="#">Back Bay</a></li>
+            <li><a href="#">Central Square</a></li>
+          </ul>
+        </li>
+        <% if user_signed_in? %>
+        <li><%= link_to "Profile", "/users/#{current_user.id}" %></li>
+        <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+        <% else %>
+        <li><%= link_to "Sign In", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </section>
+  </nav>
+
+  <div class="off-canvas-wrap" data-offcanvas>
+  <div class="inner-wrap">
+  <nav class="header"></nav>
+    <a class="right-off-canvas-toggle" href="#" >
+      <div class="menu">
+        <div class="off-canvas-bar"></div>
+        <div class="off-canvas-middle-bar"></div>
+        <div class="off-canvas-bottom-bar"></div>
+      </div>
+    </a>
+  </nav>
+    <!-- Off Canvas Menu -->
+    <aside class="right-off-canvas-menu">
+        <!-- whatever you want goes here -->
+        <ul class="side-nav main">
+
+          <li><a href="#">bowling</a></li>
+          <li><a href="#">basketball</a></li>
+
+        </ul>
+    </aside>
+    <!-- main content goes here -->
+
+
+  <% flash.each do |key, value| %>
+  <div class="flash <%= key %>"><%= value %></div>
+  <% end %>
+
   <%= yield %>
-</div>
+  <!-- close the off-canvas menu -->
+  <a class="exit-off-canvas"></a>
 
+  <footer>
+  <ul class="inline-list social">
+    <li><i class="fi-social-facebook"></i></li>
+    <li><i class="fi-social-pinterest"></i></li>
+    <li><i class="fi-social-youtube"></i></li>
+    <li><i class="fi-social-twitter"></i></li>
+  </ul>
+</footer>
+
+</div>
+</div>
+  <script>
+  $(function() {
+    $(".right-off-canvas-toggle, .exit-off-canvas").click(function() {
+      $(".top-bar").toggleClass("top-bar-close");
+      $(".middle-bar").toggleClass("middle-bar-close");
+      $(".bottom-bar").toggleClass("bottom-bar-close");
+    });
+  });
+  </script>
 </body>
 </html>

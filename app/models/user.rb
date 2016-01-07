@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   validates :username, presence: true, uniqueness: true
   mount_uploader :avatar, AvatarUploader
+  has_many :reviews
 end

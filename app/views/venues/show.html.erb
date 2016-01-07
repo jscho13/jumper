@@ -1,5 +1,15 @@
 <h1><%= @venue.venue_name %></h1>
 <p><%= @venue.description %></p>
+<ul>
+  <% @reviews.each do |review| %>
+  <li> <%= review.review_body %></li>
+  <%= review.rating %>
+  <% end %>
+</ul>
+
 <div class="text-center">
-  <a href="<%= venues_path %>" class="button">All Venues</a>
-</div>
+  <a href="<%= new_venue_review_path(@venue) %>" class="button">Add a New Review</a>
+  </div>
+  <div class="text-center">
+    <a href="<%= venues_path %>" class="button">All Venues</a>
+  </div>
