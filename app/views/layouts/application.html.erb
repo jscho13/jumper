@@ -28,12 +28,14 @@
       <ul class="right">
         <li class="has-form">
           <div class="row collapse">
-            <div class="large-8 small-9 columns">
-              <input type="text" placeholder="Find Stuff">
-            </div>
-            <div class="large-4 small-3 columns">
-              <a href="#" class="alert button expand">Search</a>
-            </div>
+            <%= form_for venues_path, method: :get do %>
+              <div class="large-8 small-9 columns">
+                <%= text_field_tag :query, params[:query], attr: "Find Stuff" %>
+              </div>
+              <div class="large-4 small-3 columns">
+                <%= submit_tag "Search", name: nil %>
+              </div>
+            <% end %>
           </div>
         </li>
         <li class="has-dropdown">
@@ -44,7 +46,9 @@
           </ul>
         </li>
         <% if user_signed_in? %>
-        <li class="picture"><%= image_tag(current_user.avatar) %></li>
+          <% unless current_user.avatar.url.nil? %>
+            <li class="picture"><%= image_tag(current_user.avatar) %></li>
+          <% end %>
         <li><%= link_to "Profile", "/users/#{current_user.id}" %></li>
         <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
         <% else %>
@@ -75,16 +79,17 @@
 
         </ul>
     </aside>
-    <!-- main content goes here -->
 
-
-  <% flash.each do |key, value| %>
-  <div class="flash <%= key %>"><%= value %></div>
-  <% end %>
 
   <div class="container row">
+    <% flash.each do |key, value| %>
+      <div class="flash <%= key %>"><%= value %></div>
+    <% end %>
+
     <%= yield %>
+
   </div>
+
   <!-- close the off-canvas menu -->
   <a class="exit-off-canvas"></a>
 

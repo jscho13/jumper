@@ -6,6 +6,11 @@ require 'rails_helper'
 # [] Visiting the root path should display a list of all venues.
 
 feature "user sees a list of reviews for the given acitivty" do
+  before(:each) do
+    user = FactoryGirl.create(:user)
+    visit '/'
+    sign_in_as(user)
+  end
   let!(:venue) { FactoryGirl.create(:venue) }
   let!(:review) { FactoryGirl.create(:review, venue_id: venue.id) }
 

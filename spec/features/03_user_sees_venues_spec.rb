@@ -7,6 +7,9 @@ require 'rails_helper'
 
 feature "user sees a list of his/her venues" do
   before(:each) do
+    user = FactoryGirl.create(:user)
+    visit '/'
+    sign_in_as(user)
     @bodaborg = FactoryGirl.create(:venue)
     @skyzone = FactoryGirl.create(:venue)
   end
