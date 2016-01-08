@@ -1,9 +1,7 @@
 class VenuesController < ApplicationController
   def index
-    # TO SEARCH BY MODEL
-    # Venue.search_by_venue_name("BodaBorg")
     if params[:query]
-      @venues = PgSearch.multisearch(params[:query])
+      @venues = Venue.search_by_venue_name(params[:query])
     else
       @venues = Venue.all
     end
