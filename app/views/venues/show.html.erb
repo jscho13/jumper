@@ -7,11 +7,11 @@
   <% @reviews.each do |review| %>
   <li> <%= review.review_body %></li>
   <%= review.rating %>
-  <li><%= Vote.where("voteable_id = ? AND vote = ?", review.id, true ).count %></li>
-  <li><%= downvotes = Vote.where("voteable_id = ? AND vote = ?", review.id, false ).count %></li>
+  <li>likes: <%= Vote.where("voteable_id = ? AND vote = ?", review.id, true ).count %></li>
+  <li>dislikes: <%= downvotes = Vote.where("voteable_id = ? AND vote = ?", review.id, false ).count %></li>
   <div class="buttons">
-    <%= button_to "Upvote", venue_path, method: :put, form_class: "upvote_button", name: "upvote#{review.id}" %>
-    <%= button_to "Downvote", venue_path, method: :put, form_class: "downvote_button", name: "downvote#{review.id}" %>
+    <%= button_to "helpful", venue_path, method: :put, form_class: "upvote_button", name: "upvote#{review.id}", label: "helpful" %>
+    <%= button_to "not helpful", venue_path, method: :put, form_class: "downvote_button", name: "downvote#{review.id}", label: "not helpful" %>
   </div>
   <% end %>
 </ul>

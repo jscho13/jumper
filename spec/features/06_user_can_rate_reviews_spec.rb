@@ -10,32 +10,40 @@ feature "user sees a list of reviews for the given acitivty" do
   Capybara.default_max_wait_time = 5
   let!(:venue) { FactoryGirl.create(:venue) }
   let!(:review) { FactoryGirl.create(:review, venue_id: venue.id) }
+  let!(:user) { FactoryGirl.create(:user) }
 
   scenario "upvote button counts vote +1" do
-    visit venues_path
+    sign_in_as(user)
+    visit "/venues/#{venue.id}"
     click_on 'helpful'
+    visit "/venues/#{venue.id}"
 
     expect(page).to have_content "likes: 1"
   end
 
   scenario "downvote button counts vote -1" do
-    visit venues_path
+    sign_in_as(user)
+    visit "/venues/#{venue.id}"
     click_on 'not helpful'
+    visit "/venues/#{venue.id}"
 
     expect(page).to have_content "dislikes: 1"
   end
 
   scenario "only one button can be activated" do
-    visit venues_path
+    sign_in_as(user)
+    visit "/venues/#{venue.id}"
     click_on 'not helpful'
     click_on 'helpful'
+    visit "/venues/#{venue.id}"
 
     expect(page).to have_content "likes: 1"
     expect(page).to have_content "dislikes: 0"
   end
 
   scenario "undo upvote" do
-    visit venues_path
+    sign_in_as(user)
+    visit "/venues/#{venue.id}"
     click_on 'helpful'
     click_on 'helpful'
 
@@ -43,7 +51,8 @@ feature "user sees a list of reviews for the given acitivty" do
   end
 
   scenario "undo downvote" do
-    visit venues_path
+    sign_in_as(user)
+    visit "/venues/#{venue.id}"
     click_on 'not helpful'
     click_on 'not helpful'
 

@@ -28,8 +28,8 @@ class VenuesController < ApplicationController
   def update
     @venue = Venue.find(params[:id])
     @user = User.where("username = ?", current_user.username).first
-    @up_check = params.select{|key,value| value == "Upvote"}.keys[0]
-    @down_check = params.select{|key,value| value == "Downvote"}.keys[0]
+    @up_check = params.select{|key,value| value == "helpful"}.keys[0]
+    @down_check = params.select{|key,value| value == "not helpful"}.keys[0]
 
     if @up_check
       review = Review.find(@up_check[6..-1])
