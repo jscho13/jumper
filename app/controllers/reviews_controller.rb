@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authorize_user, except: [:index, :show]
+
   def new
     @venue = Venue.find(params[:venue_id])
     @review = Review.new
