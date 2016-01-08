@@ -12,5 +12,9 @@ class Review < ActiveRecord::Base
   belongs_to :user
 
   include PgSearch
-  pg_search_scope :search_by_review_body, against: :review_body
+  pg_search_scope :search_by_review_body,
+    against: :review_body,
+    :using => {
+                :tsearch => {:prefix => true}
+              }
 end

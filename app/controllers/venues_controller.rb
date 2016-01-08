@@ -2,6 +2,7 @@ class VenuesController < ApplicationController
   def index
     if params[:query]
       @venues = Venue.search_by_venue_name(params[:query])
+      @reviews = Review.search_by_review_body(params[:query])
     else
       @venues = Venue.all
     end
@@ -25,6 +26,10 @@ class VenuesController < ApplicationController
       flash.notice = @venue.errors.full_messages.join(". ")
       render "new"
     end
+  end
+
+  def search
+
   end
 
   private

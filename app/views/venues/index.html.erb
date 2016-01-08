@@ -6,16 +6,17 @@
       <h1>Venues</h1>
     </div>
     <div class="floating-container">
-      <% if @venues.class == Venue::ActiveRecord_Relation %>
-        <% @venues.each do |venue| %>
-      </h4><%= link_to venue.venue_name, venue_path(venue) %></h4>
-        <% end %>
-        <% else %>
-        <% @venues.each do |venue| %>
-      </h4><%= link_to venue.content, venue_path(venue) %></h4>
-        <% end %>
+      <% @venues.each do |venue| %>
+        </h4><%= link_to venue.venue_name, venue_path(venue) %></h4>
       <% end %>
     </div>
+    <% if @reviews %>
+      <div class="floating-container">
+        <% @reviews.each do |review| %>
+          </h4><%= link_to review.review_body, venue_path(review) %></h4>
+        <% end %>
+      </div>
+    <% end %>
     <div class="text-center">
       <a href="<%= new_venue_path %>" class="button">Add a New Venue!</a>
     </div>
