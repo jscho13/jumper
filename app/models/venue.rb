@@ -9,6 +9,7 @@ class Venue < ActiveRecord::Base
   has_many :reviews
 
   include PgSearch
-  multisearchable against: [:venue_name, :street_name, :city, :state, :zip_code]
-  PgSearch::Multisearch.rebuild(Venue)
+  pg_search_scope :search_by_venue_name, :against => :venue_name
+  # multisearchable against: [:venue_name, :street_name, :city, :state, :zip_code]
+  # PgSearch::Multisearch.rebuild(Venue)
 end
