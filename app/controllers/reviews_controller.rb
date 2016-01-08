@@ -29,4 +29,11 @@ class ReviewsController < ApplicationController
       :review_body
     )
   end
+
+  def authorize_user
+    if !user_signed_in?
+      flash.notice = "Log in before reviewing!"
+      redirect_to user_session_path
+    end
+  end
 end
