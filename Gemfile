@@ -26,7 +26,6 @@ gem 'database_cleaner'
 gem 'fog'
 gem 'carrierwave'
 gem 'foundation-rails'
-gem 'pg_search'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

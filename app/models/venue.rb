@@ -7,9 +7,4 @@ class Venue < ActiveRecord::Base
   validates :city, presence: true
 
   has_many :reviews
-
-  include PgSearch
-  pg_search_scope :search_by_venue_name, against: :venue_name
-  # multisearchable against: [:venue_name, :street_name, :city, :state, :zip_code]
-  # PgSearch::Multisearch.rebuild(Venue)
 end

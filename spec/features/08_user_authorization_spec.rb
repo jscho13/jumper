@@ -14,7 +14,7 @@ feature "authorization" do
     expect(page).to have_content("Password")
   end
 
-  scenario "user can't directly access new_venue_review_path when not logged in"do
+  scenario "can't directly access new_venue_review_path when not logged in" do
     visit new_venue_review_path(venue)
 
     expect(page).to have_content("Log in before reviewing!")
