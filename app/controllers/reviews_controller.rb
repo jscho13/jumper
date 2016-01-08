@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :authorize_user, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def new
     @venue = Venue.find(params[:venue_id])
@@ -28,12 +28,5 @@ class ReviewsController < ApplicationController
       :rating,
       :review_body
     )
-  end
-
-  def authorize_user
-    if !user_signed_in?
-      flash.notice = "Log in before reviewing!"
-      redirect_to user_session_path
-    end
   end
 end

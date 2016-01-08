@@ -1,5 +1,5 @@
 class VenuesController < ApplicationController
-  before_action :authorize_user, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @venues = Venue.all
@@ -37,12 +37,5 @@ class VenuesController < ApplicationController
       :description,
       :price_range
     )
-  end
-
-  def authorize_user
-    if !user_signed_in?
-      flash.notice = "Log in before adding a new venue!"
-      redirect_to user_session_path
-    end
   end
 end
