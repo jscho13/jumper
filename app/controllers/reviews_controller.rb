@@ -1,9 +1,6 @@
 class ReviewsController < ApplicationController
   include ApplicationHelper
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :authorize_user, only: [:destroy]
-
-
 
   def new
     @venue = Venue.find(params[:venue_id])
@@ -15,7 +12,7 @@ class ReviewsController < ApplicationController
     @quantity_collection = [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]
     updated_params = review_params
     updated_params[:user_id] = current_user.id
-    
+
     @venue = Venue.find(params[:venue_id])
     @review = @venue.reviews.new(updated_params)
     @review.user = current_user
