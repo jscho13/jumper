@@ -5,6 +5,8 @@ class Venue < ActiveRecord::Base
   validates :zip_code, presence: true, length: { is: 5 }
   validates :zip_code, numericality: { only_integer: true }
   validates :city, presence: true
+  validates :user_id, presence: true
 
   has_many :reviews
+  belongs_to :user
 end

@@ -1,13 +1,12 @@
 require "rails_helper"
 
 feature "user can delete their reviews and venues" do
-  let!(:user) { FactoryGirl.create(:user) }
-  let!(:review) { FactoryGirl.create(:review, venue_id: venue.id) }
-  let!(:review_2) { FactoryGirl.create(:review, creator_id: 99, venue_id: venue_2.id) }
+  let!(:review) { FactoryGirl.create(:review) }
+  let!(:review_2) { FactoryGirl.create(:review) }
   let!(:venue) { review.venue }
-  let!(:venue_2) { review.venue, creator_id: 99) }
-  # let!(:venue) { FactoryGirl.create(:venue) }
-  # let!(:venue_2) { FactoryGirl.create(:venue, creator_id: 99) }
+  let!(:venue_2) { review.venue }
+  let!(:user) { review.user }
+  let!(:user_2) { review_2.user }
 
   scenario "user deletes a venue" do
     sign_in_as(user)

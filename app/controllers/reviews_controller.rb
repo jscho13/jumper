@@ -13,8 +13,11 @@ class ReviewsController < ApplicationController
 
   def create
     @quantity_collection = [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]
+    updated_params = review_params
+    updated_params[:user_id] = current_user.id
+    
     @venue = Venue.find(params[:venue_id])
-    @review = @venue.reviews.new(review_params)
+    @review = @venue.reviews.new(updated_params)
     @review.user = current_user
     if @review.save
       flash.notice = "review added successfully"

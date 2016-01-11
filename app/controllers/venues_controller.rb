@@ -16,7 +16,9 @@ class VenuesController < ApplicationController
   end
 
   def create
-    @venue = Venue.new(venue_params)
+    updated_params = venue_params
+    updated_params[:user_id] = current_user.id
+    @venue = Venue.new(updated_params)
     if @venue.save
       flash.notice = "Venue added successfully"
       redirect_to venues_path
