@@ -28,7 +28,7 @@
       <ul class="right">
         <li class="has-form">
           <div class="row collapse">
-            <%= form_for venues_path, method: :get do %>
+            <%= form_tag("/search", method: "get") do %>
               <div class="large-8 small-9 columns">
                 <%= text_field_tag :query, params[:query], attr: "Find Stuff" %>
               </div>

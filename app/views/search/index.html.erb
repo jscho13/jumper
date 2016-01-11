@@ -1,0 +1,23 @@
+<div class="full-height bg-img">
+<div class="row">
+  <div class="small-12 medium-10 medium-centered large-8 large-centered columns">
+    <div class="floating-container">
+      <h1>Search Results</h1>
+    </div>
+    <% if @venues %>
+      <div class="floating-container">
+        <% @venues.each do |venue| %>
+          <h4><%= link_to venue.venue_name, venue_path(venue) %></h4>
+        <% end %>
+      </div>
+    <% end %>
+    <% if @reviews %>
+      <div class="floating-container">
+        <% @reviews.each do |review| %>
+          <h4><%= link_to review.review_body, venue_path(review) %></h4>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
