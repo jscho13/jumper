@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160107183946) do
+ActiveRecord::Schema.define(version: 20160111183936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,12 +27,14 @@ ActiveRecord::Schema.define(version: 20160107183946) do
   add_index "pg_search_documents", ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
-    t.integer  "rating",      null: false
+    t.integer  "rating",                    null: false
     t.text     "review_body"
-    t.integer  "user_id",     null: false
+    t.integer  "user_id",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "venue_id",    null: false
+    t.integer  "venue_id",                  null: false
+    t.integer  "revup_count",   default: 0, null: false
+    t.integer  "revdown_count", default: 0, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,5 +71,14 @@ ActiveRecord::Schema.define(version: 20160107183946) do
   end
 
   add_index "venues", ["venue_name"], name: "index_venues_on_venue_name", unique: true, using: :btree
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "review_id",  null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["review_id", "user_id"], name: "index_votes_on_review_id_and_user_id", unique: true, using: :btree
 
 end

@@ -2,8 +2,18 @@
 <p><%= @venue.description %></p>
 <ul>
   <% @reviews.each do |review| %>
+  <div id="review-<%= review.id %>"
   <li> <%= review.review_body %></li>
-  <%= review.rating %>
+  Rating: <%= review.rating %></br>
+  Helpful: <%= review.revup_count %>
+  Not Helpful: <%= review.revdown_count %>
+  <div class="upvote" id="upvote">
+      <%= button_to "helpful", venue_review_path(@venue,review), method:"patch", params: {up: true}%>
+    </div>
+    <div class="downvote" id="downvote">
+      <%= button_to "not helpful", venue_review_path(@venue,review), method:"patch", params: {up: false}%>
+    </div>
+  </div>
   <% end %>
 </ul>
 
@@ -13,3 +23,21 @@
   <div class="text-center">
     <a href="<%= venues_path %>" class="button">All Venues</a>
   </div>
+
+<script>
+$('.upvote').on('click', function(e) {
+  e.preventDefault();
+  var userId = this.id.split(" ").pop()
+  var reviewId = this.id.split(" ").pop)()
+  var
+
+  var request = $.ajax({
+    method: "POST",
+    url: this.href,
+    data: {userId: userId, reviewId: reviewId }
+  });
+
+
+  debugger;
+})
+</script>

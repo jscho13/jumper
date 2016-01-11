@@ -21,6 +21,21 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def update
+    @venue = Venue.find(params[:venue_id])
+    @review = Review.find(params[:id])
+    @vote = @review.votes.new(user: current_user)
+    if params[:up] == "true"
+      @review.revup_count += 1
+    end
+    if @vote.save && @review.save
+      flash[:notice] = "You have voted!"
+      redirect_to venue_path(@venue)
+    else
+      flash[:error] = @vote.errors.full_messages.join
+    end
+  end
+
   private
 
   def review_params
