@@ -1,4 +1,5 @@
 class VenuesController < ApplicationController
+  include ApplicationHelper
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -23,6 +24,11 @@ class VenuesController < ApplicationController
       flash.notice = @venue.errors.full_messages.join(". ")
       render "new"
     end
+  end
+
+  def destroy
+    Venue.find(params[:id]).destroy
+    redirect_to venues_path
   end
 
   private

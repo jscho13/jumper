@@ -3,3 +3,7 @@
 <% if user_signed_in? %>
   <%= link_to "Profile", "/users/#{current_user.id}" %>
 <% end %>
+
+<% if current_user.admin? %>
+  <%= link_to "Profile", "/users/#{current_user.id}" %>
+<% end %>

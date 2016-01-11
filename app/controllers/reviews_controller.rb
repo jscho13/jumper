@@ -1,5 +1,9 @@
 class ReviewsController < ApplicationController
+  include ApplicationHelper
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorize_user, only: [:destroy]
+
+
 
   def new
     @venue = Venue.find(params[:venue_id])
@@ -19,6 +23,11 @@ class ReviewsController < ApplicationController
       flash.notice = @review.errors.full_messages.join(". ")
       render "new"
     end
+  end
+
+  def destroy
+    Review.find(params[:id]).destroy
+    redirect_to venue_path(Venue.find(params[:venue_id]))
   end
 
   private
