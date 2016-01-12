@@ -12,6 +12,6 @@ class Review < ActiveRecord::Base
   belongs_to :user
 
   def deletable_by(user)
-    user ? (user.admin? || self.user_id == user.id) : false
+    user ? (user.admin? || user_id == user.id) : false
   end
 end
