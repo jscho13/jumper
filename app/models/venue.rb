@@ -1,3 +1,16 @@
+class StateValidator < ActiveModel::Validator
+  def validate(record)
+    state_array = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
+                   "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+                   "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+                   "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+                   "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+    unless state_array.include?(record.state)
+      record.errors[:name] << 'Need a proper state acronym'
+    end
+  end
+end
+
 class Venue < ActiveRecord::Base
   include ActiveModel::Validations
   validates_with StateValidator
@@ -14,18 +27,5 @@ class Venue < ActiveRecord::Base
 
   def deletable_by(user)
     user ? (user.admin? || user_id == user.id) : false
-  end
-end
-
-class StateValidator < ActiveModel::Validator
-  def validate(record)
-    state_array = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
-                   "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
-                   "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
-                   "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
-                   "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
-    unless state_array.include?(record.state)
-      record.errors[:name] << 'Need a proper state acronym'
-    end
   end
 end
