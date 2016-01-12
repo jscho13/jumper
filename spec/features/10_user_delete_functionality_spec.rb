@@ -17,6 +17,7 @@ feature "user can delete their reviews and venues" do
     expect(page).to have_content(venue.venue_name)
 
     click_link venue.venue_name
+
     click_button "Delete Venue"
     expect(page).to_not have_content(venue.venue_name)
   end

@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  include ApplicationHelper
   before_action :authorize_user, only: [:destroy, :index]
 
   def index

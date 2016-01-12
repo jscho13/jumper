@@ -1,19 +1,16 @@
 <h1><%= @venue.venue_name %></h1>
 <p><%= @venue.description %></p>
 
-<% unless current_user.nil? %>
-  <% if current_user.admin? || @venue.user_id == current_user.id %>
-    <%= button_to "Delete Venue", venue_path, class: "button", method: "delete", label: "Delete Venue"%>
-  <% end %>
+<% if @venue.deletable_by(current_user) %>
+  <%= button_to "Delete Venue", venue_path, class: "button", method: "delete", label: "Delete Venue"%>
 <% end %>
+
 <ul>
   <% @reviews.each do |review| %>
     <li> <%= review.review_body %></li>
     <%= review.rating %>
-    <% unless current_user.nil? %>
-      <% if current_user.admin? || review.user_id == current_user.id %>
-        <%= button_to "Delete Review", "#{@venue.id}/reviews/#{review.id}", class: "button", method: "delete", label: "Delete Review" %>
-      <% end %>
+    <% if review.deletable_by(current_user) %>
+      <%= button_to "Delete Review", "#{@venue.id}/reviews/#{review.id}", class: "button", method: "delete", label: "Delete Review" %>
     <% end %>
   <% end %>
 </ul>
