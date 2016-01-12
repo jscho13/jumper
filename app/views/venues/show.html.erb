@@ -1,15 +1,24 @@
 <h1><%= @venue.venue_name %></h1>
 <p><%= @venue.description %></p>
+
+<% if @venue.deletable_by(current_user) %>
+  <%= button_to "Delete Venue", venue_path, class: "button", method: "delete", label: "Delete Venue"%>
+<% end %>
+
 <ul>
   <% @reviews.each do |review| %>
-  <li> <%= review.review_body %></li>
-  <%= review.rating %>
+    <li> <%= review.review_body %></li>
+    <%= review.rating %>
+    <% if review.deletable_by(current_user) %>
+      <%= button_to "Delete Review", "#{@venue.id}/reviews/#{review.id}", class: "button", method: "delete", label: "Delete Review" %>
+    <% end %>
   <% end %>
 </ul>
 
 <div class="text-center">
   <a href="<%= new_venue_review_path(@venue) %>" class="button">Add a New Review</a>
-  </div>
-  <div class="text-center">
-    <a href="<%= venues_path %>" class="button">All Venues</a>
-  </div>
+</div>
+
+<div class="text-center">
+  <a href="<%= venues_path %>" class="button">All Venues</a>
+</div>

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authorize_user, only: [:destroy, :index]
+
   def index
   end
 
@@ -7,5 +9,8 @@ class UsersController < ApplicationController
   end
 
   def create
+  end
+
+  def destroy
   end
 end

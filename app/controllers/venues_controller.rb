@@ -15,7 +15,9 @@ class VenuesController < ApplicationController
   end
 
   def create
-    @venue = Venue.new(venue_params)
+    updated_params = venue_params
+    updated_params[:user_id] = current_user.id
+    @venue = Venue.new(updated_params)
     if @venue.save
       flash.notice = "Venue added successfully"
       redirect_to venues_path
@@ -23,6 +25,11 @@ class VenuesController < ApplicationController
       flash.notice = @venue.errors.full_messages.join(". ")
       render "new"
     end
+  end
+
+  def destroy
+    Venue.find(params[:id]).destroy
+    redirect_to venues_path
   end
 
   private
