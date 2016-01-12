@@ -37,8 +37,8 @@ feature "user sees a list of reviews for the given acitivty" do
    click_button 'helpful'
    visit "/venues/#{venue.id}"
 
-   expect(page).to have_content "likes: 1"
-   expect(page).to have_content "dislikes: 0"
+   expect(page).to have_content "Helpful: 1"
+   expect(page).to have_content "Not Helpful: 0"
  end
 
  scenario "undo upvote" do
@@ -47,7 +47,7 @@ feature "user sees a list of reviews for the given acitivty" do
    click_button 'helpful'
    click_button 'helpful'
 
-   expect(page).to have_content "likes: 0"
+   expect(page).to have_content "Helpful: 0"
  end
 
  scenario "undo downvote" do
@@ -56,20 +56,6 @@ feature "user sees a list of reviews for the given acitivty" do
    click_button 'not helpful'
    click_button 'not helpful'
 
-   expect(page).to have_content "dislikes: 0"
+   expect(page).to have_content "Not Helpful: 0"
  end
-
-=begin
- scenario "the user successfully voted for helpful" do
- visit venues_path
- click_button 'helpful'
- expect(helpful_button).to_be active
- expect(page).to have_content "likes: 1"
- scenario "the user successfully voted for not helpful" do
- visit venues_path
- click_button 'not helpful'
- expect(helpful_button).to_be active
- expect(page).to have_content "dislikes: 1"
-=end
-
 end

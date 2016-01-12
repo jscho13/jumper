@@ -11,7 +11,7 @@
       <%= button_to "helpful", venue_review_path(@venue,review), method:"patch", params: {up: true}%>
     </div>
     <div class="downvote" id="downvote">
-      <%= button_to "not helpful", venue_review_path(@venue,review), method:"patch", params: {up: false}%>
+      <%= button_to "not helpful", venue_review_path(@venue,review), method:"patch", params: {down: true}%>
     </div>
   </div>
   <% end %>
