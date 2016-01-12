@@ -1,13 +1,12 @@
 <div class="row">
   <div class="small-12 medium-10 medium-centered large-8 large-centered columns">
-    <h1>New Venue Form</h1>
+    <h1>Update Venue</h1>
 
     <%= form_for(@venue) do |f| %>
     <div class="field">
       <%= f.label :venue_name, "Venue Name" %><br />
       <%= f.text_field :venue_name %>
     </div>
-
 
     <div class="field">
       <%= f.label :street_name, "Street Address" %><br />
@@ -39,9 +38,8 @@
       <%= f.text_field :description %>
     </div>
 
-
     <div class="actions">
-      <%= f.submit "Add Venue" %>
+      <%= f.submit "Submit Changes" %>
     </div>
     <% end %>
   </div>
