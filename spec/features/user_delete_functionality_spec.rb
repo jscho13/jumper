@@ -70,7 +70,7 @@ feature "user can delete their reviews and venues" do
 
     click_button "Cancel My Account"
 
-    expect(page).to have_content("Your account has been successfully cancelled.")
+    expect(page).to have_content("Your account has been successfully cancelled")
     sign_in_as(user)
     expect(page).to have_content("Invalid email or password.")
   end
