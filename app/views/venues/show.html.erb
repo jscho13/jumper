@@ -5,12 +5,12 @@
   <div id="review-<%= review.id %>"
   <li> <%= review.review_body %></li>
   Rating: <%= review.rating %></br>
-  Helpful: <%= review.revup_count %>
-  Not Helpful: <%= review.revdown_count %>
-  <div class="upvote" id="upvote">
-      <%= button_to "helpful", venue_review_path(@venue,review), method:"patch", params: {up: true}%>
+  <div class="helpful">Helpful: <%= review.revup_count %></div>
+  <div class="not-helpful">Not Helpful: <%= review.revdown_count %></div>
+  <div id="upvote">
+      <%= button_to "helpful", venue_review_path(@venue,review), method:"patch", params: {up: true} %>
     </div>
-    <div class="downvote" id="downvote">
+    <div id="downvote">
       <%= button_to "not helpful", venue_review_path(@venue,review), method:"patch", params: {down: true}%>
     </div>
   </div>
@@ -25,14 +25,52 @@
   </div>
 
 <script>
-$('.upvote').on('click', function(e) {
-  e.preventDefault();
-  debugger;
-})
+$('#upvote').on('click', function(event) {
+    event.preventDefault();
+    var reviewButton = event.target;
+    var venueId = reviewButton.baseURI.match(/^(.*?)(\d+)(\D*)$/)[2];
+    var reviewButtonTo = $(reviewButton).closest('.button_to');
+    var reviewId = $(reviewButtonTo).attr('action').match(/\/(\d+)\//)[1];
+    var voteType = "true";
+
+    var makeAjaxRequestPost = function(reviewButtonTo, venueID, reviewId, voteType) {
+      var request = $.ajax({
+        method: 'PATCH',
+        data: { up: voteType },
+        url: '/api/venues/' + venueID + '/reviews/' + reviewId
+      });
+
+      request.done(function(data) {
+        var review = $('#review-' + data.id)[0]
+        review.getElementsByClassName("helpful")[0].innerHTML = "Helpful: " + data.revup_count
+        review.getElementsByClassName("not-helpful")[0].innerHTML = "Not Helpful: " + data.revdown_count
+      });
+    };
+    makeAjaxRequestPost(reviewButtonTo, venueId, reviewId, voteType)
+  });
 </script>
 <script>
-$('.downvote').on('click', function(e) {
-  e.preventDefault();
-  debugger;
-})
+$('#downvote').on('click', function(event) {
+    event.preventDefault();
+    var reviewButton = event.target;
+    var venueId = reviewButton.baseURI.match(/^(.*?)(\d+)(\D*)$/)[2];
+    var reviewButtonTo = $(reviewButton).closest('.button_to');
+    var reviewId = $(reviewButtonTo).attr('action').match(/\/(\d+)\//)[1];
+    var voteType = "true";
+
+    var makeAjaxRequestPost = function(reviewButtonTo, venueID, reviewId, voteType) {
+      var request = $.ajax({
+        method: 'PATCH',
+        data: { down: voteType },
+        url: '/api/venues/' + venueID + '/reviews/' + reviewId
+      });
+
+      request.done(function(data) {
+        var review = $('#review-' + data.id)[0]
+        review.getElementsByClassName("helpful")[0].innerHTML = "Helpful: " + data.revup_count
+        review.getElementsByClassName("not-helpful")[0].innerHTML = "Not Helpful: " + data.revdown_count
+      });
+    };
+    makeAjaxRequestPost(reviewButtonTo, venueId, reviewId, voteType)
+  });
 </script>
