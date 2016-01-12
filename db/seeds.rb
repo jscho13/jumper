@@ -39,7 +39,7 @@ end
   Review.create(
     rating: rand(5) + 1,
     review_body: Faker::Hipster.paragraph,
-    venue_id: Venue.all.sample.id
+    venue_id: Venue.all.sample.id,
     user_id: User.all.sample.id
   )
 end

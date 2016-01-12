@@ -16,12 +16,12 @@ FactoryGirl.define do
     sequence(:state) { |n| Venue::STATES[n % 50 + 1] }
     sequence(:zip_code) { |n| "#{n}1234"[0..4] }
     sequence(:city) { |n| "COOL CITY #{n}" }
-    sequence(:price_range) {|n| "#{n % 4 + 1}"}
+    sequence(:price_range) { |n| "#{n % 4 + 1}" }
     user
   end
 
   factory :review do
-    sequence(:rating) { |n| n % 5 + 1}
+    sequence(:rating) { |n| n % 5 + 1 }
     sequence(:review_body) { |n| "This is a review #{n}" }
     venue
     user
