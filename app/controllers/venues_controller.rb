@@ -2,12 +2,12 @@ class VenuesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @venues = Venue.all
+    @venues = Venue.page(params[:page]).per(5)
   end
 
   def show
     @venue = Venue.find(params[:id])
-    @reviews = @venue.reviews
+    @reviews = @venue.reviews.page(params[:page]).per(5)
   end
 
   def new
