@@ -9,4 +9,10 @@ Rails.application.routes.draw do
 
   root to: "venues#index"
   resources :users
+
+  namespace :api do
+    namespace :v1 do
+      resources :votes
+    end
+  end
 end
