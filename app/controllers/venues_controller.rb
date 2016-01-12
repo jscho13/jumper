@@ -15,9 +15,8 @@ class VenuesController < ApplicationController
   end
 
   def create
-    updated_params = venue_params
-    updated_params[:user_id] = current_user.id
-    @venue = Venue.new(updated_params)
+    @venue = Venue.new(venue_params)
+    @venue.user = current_user
     if @venue.save
       flash.notice = "Venue added successfully"
       redirect_to venues_path
@@ -32,10 +31,8 @@ class VenuesController < ApplicationController
   end
 
   def update
-    updated_params = venue_params
-    updated_params[:user_id] = current_user.id
     @venue = Venue.find(params[:id])
-    @venue.update(updated_params)
+    @venue.update(venue_params)
     if @venue.save
       flash.notice = "Venue added successfully"
       redirect_to venue_path(@venue)
@@ -46,7 +43,8 @@ class VenuesController < ApplicationController
   end
 
   def destroy
-    Venue.find(params[:id]).destroy
+    @venue = Venue.find(params[:id])
+    @venue.destroy
     redirect_to venues_path
   end
 
