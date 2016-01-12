@@ -6,11 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'faker'
-STATE_ARRAY = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
-               "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
-               "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
-               "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
-               "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
 
 User.create(
   username: "a",
@@ -32,11 +27,11 @@ end
     venue_name: Faker::Hacker.noun,
     description: Faker::Hacker.say_something_smart,
     street_name: Faker::Address.street_address,
-    state: STATE_ARRAY.sample,
+    state: Venue::STATES.sample,
     zip_code: Faker::Address.zip[0..4],
     city: Faker::Address.city,
     price_range: rand(5) + 1,
-    user_id: rand(User.count) + 1
+    user_id: User.all.sample.id
   )
 end
 
@@ -44,7 +39,7 @@ end
   Review.create(
     rating: rand(5) + 1,
     review_body: Faker::Hipster.paragraph,
-    venue_id: rand(Venue.count) + 1,
-    user_id: rand(User.count) + 1
+    venue_id: Venue.all.sample.id
+    user_id: User.all.sample.id
   )
 end

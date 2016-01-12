@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user can delete their reviews and venues" do
+feature "user can edit venues and reviews" do
   let!(:review) { FactoryGirl.create(:review) }
   let!(:review_2) { FactoryGirl.create(:review) }
   let!(:venue) { review.venue }
@@ -10,7 +10,7 @@ feature "user can delete their reviews and venues" do
   let!(:user_3) { venue_2.user }
   let!(:user_4) { review_2.user }
 
-  scenario "user edits a venue" do
+  scenario "user edits their own venue" do
     sign_in_as(user)
 
     visit venue_path(venue)
@@ -32,7 +32,16 @@ feature "user can delete their reviews and venues" do
     expect(page).to have_content("edited description")
   end
 
-  scenario "user edits a review" do
+  scenario "user cannot edit another user's venue" do
+    sign_in_as(user_2)
+
+    visit venue_path(venue)
+    expect(page).to have_content(venue.venue_name)
+
+    expect(page).to_not have_content("Edit Venue")
+  end
+
+  scenario "user edits their own review" do
     sign_in_as(user_2)
 
     visit venue_path(venue)
@@ -47,5 +56,14 @@ feature "user can delete their reviews and venues" do
 
     expect(page).to have_content("edited body")
     expect(page).to have_content("5")
+  end
+
+  scenario "user cannot edit another user's venue" do
+    sign_in_as(user)
+
+    visit venue_path(venue)
+    expect(page).to have_content(venue.venue_name)
+
+    expect(page).to_not have_content("Edit Review")
   end
 end
