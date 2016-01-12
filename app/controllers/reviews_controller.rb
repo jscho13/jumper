@@ -26,12 +26,11 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     vote = Vote.find_by(user: current_user, review: @review)
     if vote
+      vote.destroy
       if vote.up
         if params[:up] == "true"
-          vote.destroy
           @review.revup_count -= 1
         elsif params[:down] == "true"
-          vote.destroy
           vote = @review.votes.new(user: current_user)
           vote.up = false
           @review.revup_count -= 1
@@ -39,22 +38,13 @@ class ReviewsController < ApplicationController
         end
       else
         if params[:up] == "true"
-          vote.destroy
           vote = @review.votes.new(user: current_user)
           vote.up = true
           @review.revup_count += 1
           @review.revdown_count -= 1
         elsif params[:down]
-          vote.destroy
           @review.revdown_count -= 1
         end
-      end
-      if vote.save && @review.save
-        flash[:notice] = "Your vote is updated!"
-        redirect_to venue_path(@venue)
-      else
-        flash[:notice] = vote.errors.full_messages.join(". ")
-        redirect_to venue_path(@venue)
       end
     else
       vote = @review.votes.new(user: current_user, up: false)
@@ -64,13 +54,13 @@ class ReviewsController < ApplicationController
       elsif params[:down] == "true"
         @review.revdown_count += 1
       end
-      if vote.save && @review.save
-        flash[:notice] = "You have voted!"
-        redirect_to venue_path(@venue)
-      else
-        flash[:notice] = vote.errors.full_messages.join(". ")
-        redirect_to venue_path(@venue)
-      end
+    end
+    if vote.save && @review.save
+      flash[:notice] = "You have voted!"
+      redirect_to venue_path(@venue)
+    else
+      flash[:notice] = vote.errors.full_messages.join(". ")
+      redirect_to venue_path(@venue)
     end
   end
 
