@@ -1,4 +1,5 @@
 class Venue < ActiveRecord::Base
+  
   class StateValidator < ActiveModel::Validator
     def validate(record)
       state_array = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
@@ -11,6 +12,7 @@ class Venue < ActiveRecord::Base
       end
     end
   end
+
   include ActiveModel::Validations
   validates_with StateValidator
   validates :venue_name, presence: true
