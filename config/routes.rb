@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
 
   resources :venues do
-    resources :reviews
+    resources :reviews#, except: [:edit, :update]
   end
   devise_for :users
 
   namespace :admin do
     resources :users, only: [:index, :destroy]
   end
+
+  # resources :reviews, only: [:edit, :update]
 
   root to: "venues#index"
   # The priority is based upon order of creation: first created -> highest priority.

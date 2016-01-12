@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="small-12 medium-10 medium-centered large-8 large-centered columns">
+    <h1>Update Venue</h1>
+
+    <%= form_for(@venue) do |f| %>
+    <div class="field">
+      <%= f.label :venue_name, "Venue Name" %><br />
+      <%= f.text_field :venue_name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :street_name, "Street Address" %><br />
+      <%= f.text_field :street_name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :city %><br />
+      <%= f.text_field :city %>
+    </div>
+
+    <div class="field">
+      <%= f.label :state %><br />
+      <%= f.text_field :state %>
+    </div>
+
+    <div class="field">
+      <%= f.label :zip_code, "Zip Code" %><br />
+      <%= f.text_field :zip_code %>
+    </div>
+
+    <div class="field">
+      <%= f.label :price_range, "Price Range" %><br />
+      <%= f.text_field :price_range %>
+    </div>
+
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_field :description %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Submit Changes" %>
+    </div>
+    <% end %>
+  </div>
+</div>

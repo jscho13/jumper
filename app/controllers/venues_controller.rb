@@ -27,6 +27,24 @@ class VenuesController < ApplicationController
     end
   end
 
+  def edit
+    @venue = Venue.find(params[:id])
+  end
+
+  def update
+    updated_params = venue_params
+    updated_params[:user_id] = current_user.id
+    @venue = Venue.find(params[:id])
+    @venue.update(updated_params)
+    if @venue.save
+      flash.notice = "Venue added successfully"
+      redirect_to venue_path(@venue)
+    else
+      flash.notice = @venue.errors.full_messages.join(". ")
+      render "edit"
+    end
+  end
+
   def destroy
     Venue.find(params[:id]).destroy
     redirect_to venues_path

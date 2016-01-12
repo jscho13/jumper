@@ -24,6 +24,29 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+    @venue = Venue.find(params[:venue_id])
+    @review = Review.find(params[:id])
+    @quantity_collection = [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]
+  end
+
+  def update
+    @quantity_collection = [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]
+    updated_params = review_params
+    updated_params[:user_id] = current_user.id
+
+    @venue = Venue.find(params[:venue_id])
+    @review = @venue.reviews.find(params[:id])
+    @review.update(updated_params)
+    if @review.save
+      flash.notice = "review added successfully"
+      redirect_to venue_path(@venue)
+    else
+      flash.notice = @review.errors.full_messages.join(". ")
+      render "edit"
+    end
+  end
+
   def destroy
     Review.find(params[:id]).destroy
     redirect_to venue_path(Venue.find(params[:venue_id]))

@@ -62,4 +62,16 @@ feature "user can delete their reviews and venues" do
 
     expect { visit admin_users_path }.to raise_error
   end
+
+  scenario "user can cancel their account" do
+    sign_in_as(user)
+
+    visit edit_user_registration_path
+
+    click_button "Cancel My Account"
+
+    expect(page).to have_content("Your account has been successfully cancelled.")
+    sign_in_as(user)
+    expect(page).to have_content("Invalid email or password.")
+  end
 end
