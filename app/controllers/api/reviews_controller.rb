@@ -32,8 +32,8 @@ class Api::ReviewsController < ActionController::Base
     else
       vote = @review.votes.new(user: current_user, up: false)
       if params[:up] == "true"
-          @review.revup_count += 1
-          vote.up = true
+        @review.revup_count += 1
+        vote.up = true
       elsif params[:down] == "true"
         @review.revdown_count += 1
       end
@@ -43,14 +43,14 @@ class Api::ReviewsController < ActionController::Base
       if params[:load_javascript] == "false"
         redirect_to venue_path(@venue), method: "get"
       else
-        render(json: @review.to_json )
+        render(json: @review.to_json)
       end
     else
       flash[:notice] = vote.errors.full_messages.join(". ")
       if params[:load_javascript] == "false"
         redirect_to venue_path(@venue)
       else
-        render(json: @review.to_json )
+        render(json: @review.to_json)
       end
     end
   end
