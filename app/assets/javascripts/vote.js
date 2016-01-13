@@ -1,13 +1,13 @@
 $(function() {
   var makeAjaxVoteRequest = function(url, data) {
     var request = $.ajax({
-      method: 'PATCH',
+      method: "PATCH",
       data: data,
       url: url
     });
 
     request.done(function(data) {
-      var review = $('#review-' + data.id);
+      var review = $("#review-" + data.id);
       review.find(".helpful").text("Helpful: " + data.revup_count)
       review.find(".not-helpful").text("Not Helpful: " + data.revdown_count)
     });
@@ -17,16 +17,16 @@ $(function() {
     var data;
     var reviewButton = $(this);
     if (reviewButton.hasClass("downvote")){
-      data = { down: "true", load_javascript: "true"}
+      data = { down: "true", load_javascript: "true"};
     } else {
-      data = { up: "true", load_javascript: "true" }
-    }
+      data = { up: "true", load_javascript: "true" };
+    };
     var form = reviewButton.find("form");
-    var url = form.attr('action');
+    var url = form.attr("action");
 
-    makeAjaxVoteRequest(url, data)
+    makeAjaxVoteRequest(url, data);
   }
 
-  $('.upvote').on('click', onVoteClick);
-  $('.downvote').on('click', onVoteClick);
+  $(".upvote").on("click", onVoteClick);
+  $(".downvote").on("click", onVoteClick);
 });
