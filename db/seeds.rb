@@ -24,7 +24,7 @@ end
 
 50.times do
   Venue.create(
-    venue_name: Faker::Hacker.noun,
+    venue_name: Faker::Hacker.noun + rand(100000).to_s,
     description: Faker::Hacker.say_something_smart,
     street_name: Faker::Address.street_address,
     state: Venue::STATES.sample,
