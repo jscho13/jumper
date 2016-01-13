@@ -8,8 +8,8 @@ $(function() {
 
     request.done(function(data) {
       var review = $("#review-" + data.id);
-      review.find(".helpful").text(data.revUp_count);
-      review.find(".not-helpful").text(data.revDown_count);
+      review.find(".helpful").text(data.revup_Count);
+      review.find(".not-helpful").text(data.revdown_Count);
     });
   };
   var onVoteClick = function(event) {
