@@ -180,7 +180,6 @@ input[type=submit] {
 
 .vote-wrap {
  width: 100%;
- height: 100%;
  float: left;
  display: block;
 }
@@ -188,11 +187,14 @@ input[type=submit] {
 .box{
   display: block;
   float: left;
-
 }
 
-.button_to,
-.button_to div {
-  display: block;
-  float: left;
+.twitter{
+  width: 5%;
+  height: 10%;
+}
+
+footer {
+  margin-top: 20px;
+  text-align: left;
 }
