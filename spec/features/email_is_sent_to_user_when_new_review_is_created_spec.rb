@@ -16,7 +16,8 @@ feature "email is sent when review is created" do
     fill_in "Your Review", with: "Cool"
     click_button "Add review"
 
-    expect(ActionMailer::Base.deliveries.count).to eq(1)
-    expect(ActionMailer::Base.deliveries[0].to.first).to eq(User.find(venue.user_id).email)
+    deliveries = ActionMailer::Base.deliveries
+    expect(deliveries.count).to eq(1)
+    expect(deliveries[0].to.first).to eq(User.find(venue.user_id).email)
   end
 end

@@ -5,8 +5,8 @@ class ReviewMailer < ApplicationMailer
     @review_poster = User.find(review.user_id)
     @venue_poster = User.find(venue.user_id)
 
-    mail(to: @venue_poster.email,
-    subject: "There's a new review for #{@venue_poster.username}")
-    "test content"
+    mail(
+      to: @venue_poster.email,
+      subject: "There's a new review for #{@venue_poster.username}")
   end
 end
