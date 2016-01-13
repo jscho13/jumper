@@ -15,12 +15,12 @@
     <%= review.rating %>
   <div class="helpful">Helpful: <%= review.revup_count %></div>
   <div class="not-helpful">Not Helpful: <%= review.revdown_count %></div>
-  <div id="upvote">
-      <%= button_to "helpful", "/api/venues/#{@venue.id}/reviews/#{review.id}", method:"patch", params: {up: "true", load_javascript: "false"} %>
-    </div>
-    <div id="downvote">
-      <%= button_to "not helpful", "/api/venues/#{@venue.id}/reviews/#{review.id}", method:"patch", params: {down: "true", load_javascript: "false"}%>
-    </div>
+  <div class="upvote">
+    <%= button_to "helpful", "/api/venues/#{@venue.id}/reviews/#{review.id}", method:"patch", params: {up: "true", load_javascript: "false"} %>
+  </div>
+  <div class="downvote">
+    <%= button_to "not helpful", "/api/venues/#{@venue.id}/reviews/#{review.id}", method:"patch", params: {down: "true", load_javascript: "false"}%>
+  </div>
   </div>
   <% if review.deletable_by(current_user) %>
   <%= button_to "Delete Review", venue_review_path(@venue, review), class: "button", method: "delete", label: "Delete Review" %>
@@ -30,6 +30,7 @@
   <% end %>
   <% end %>
 </ul>
+</div>
 
 <div class="text-center">
   <a href="<%= new_venue_review_path(@venue) %>" class="button">Add a New Review</a>
@@ -43,7 +44,7 @@
 var makeAjaxRequestUpPost = function(reviewButtonTo, venueID, reviewId, voteType) {
   var request = $.ajax({
     method: 'PATCH',
-    data: { up: voteType },
+    data: { up: voteType, load_javascript: "true" },
     url: '/api/venues/' + venueID + '/reviews/' + reviewId
   });
 
@@ -57,7 +58,7 @@ var makeAjaxRequestUpPost = function(reviewButtonTo, venueID, reviewId, voteType
 var makeAjaxRequestDownPost = function(reviewButtonTo, venueID, reviewId, voteType) {
   var request = $.ajax({
     method: 'PATCH',
-    data: { down: voteType },
+    data: { down: voteType,load_javascript: "true" },
     url: '/api/venues/' + venueID + '/reviews/' + reviewId
   });
 
@@ -68,23 +69,23 @@ var makeAjaxRequestDownPost = function(reviewButtonTo, venueID, reviewId, voteTy
   });
 };
 
-$('#upvote').on('click', function(event) {
+$('.upvote').on('click', function(event) {
     event.preventDefault();
     var reviewButton = event.target;
     var venueId = reviewButton.baseURI.match(/^(.*?)(\d+)(\D*)$/)[2];
     var reviewButtonTo = $(reviewButton).closest('.button_to');
-    var reviewId = $(reviewButtonTo).attr('action').match(/\/(\d+)\//)[1];
+    var reviewId = $(reviewButtonTo).attr('action').match(/^(.*?)(\d+)(\D*)$/)[2];
     var voteType = "true";
 
     makeAjaxRequestUpPost(reviewButtonTo, venueId, reviewId, voteType)
   });
 
-$('#downvote').on('click', function(event) {
+$('.downvote').on('click', function(event) {
     event.preventDefault();
     var reviewButton = event.target;
     var venueId = reviewButton.baseURI.match(/^(.*?)(\d+)(\D*)$/)[2];
     var reviewButtonTo = $(reviewButton).closest('.button_to');
-    var reviewId = $(reviewButtonTo).attr('action').match(/\/(\d+)\//)[1];
+    var reviewId = $(reviewButtonTo).attr('action').match(/^(.*?)(\d+)(\D*)$/)[2];
     var voteType = "true";
 
     makeAjaxRequestDownPost(reviewButtonTo, venueId, reviewId, voteType)

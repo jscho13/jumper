@@ -33,6 +33,7 @@ class ReviewsController < ApplicationController
     @venue = Venue.find(@review.venue_id)
     @review.destroy
     redirect_to venue_path(@venue)
+  end
 
   def update
     @quantity_collection = [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]

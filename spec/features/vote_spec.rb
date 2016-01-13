@@ -34,7 +34,6 @@ feature "user sees a list of reviews for the given acitivty" do
    sign_in_as(user)
    visit "/venues/#{venue.id}"
    click_button 'not helpful'
-   save_and_open_page
    click_button 'helpful'
    visit "/venues/#{venue.id}"
 
