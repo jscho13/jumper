@@ -1,4 +1,3 @@
-
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -28,7 +27,7 @@
             <ul class="right">
               <li class="has-form">
                 <div class="row collapse" style="background-color: #ee6f19">
-                  <%= form_for venues_path, method: :get do %>
+                  <%= form_tag("/search", method: "get") do %>
                     <div class="large-8 small-9 columns">
                       <%= text_field_tag :query, params[:query], attr: "Find Stuff" %>
                     </div>

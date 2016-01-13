@@ -29,6 +29,7 @@ gem 'foundation-rails'
 gem 'kaminari'
 gem 'mailcatcher'
 gem 'actionmailer'
+gem 'pg_search'
 
 
 # Use ActiveModel has_secure_password

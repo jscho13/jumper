@@ -20,13 +20,19 @@
           </div>
         </div>
       <% end %>
-      <hr>
-      <div class="text-center">
-        <a href="<%= new_venue_path %>" class="button">Add a New Venue!</a>
+    </div>
+    <% if @reviews %>
+      <div class="floating-container">
+        <% @reviews.each do |review| %>
+          </h4><%= link_to review.review_body, venue_path(review) %></h4>
+        <% end %>
       </div>
-      <div class="text-center">
-        <a href="<%= venues_path %>" class="button">All Venues</a>
-      </div>
+    <% end %>
+    <div class="text-center">
+      <a href="<%= new_venue_path %>" class="button">Add a New Venue!</a>
+    </div>
+    <div class="text-center">
+      <a href="<%= venues_path %>" class="button">All Venues</a>
     </div>
   </div>
 </div>

@@ -83,5 +83,4 @@ ActiveRecord::Schema.define(version: 20160112153315) do
   end
 
   add_index "votes", ["review_id", "user_id"], name: "index_votes_on_review_id_and_user_id", unique: true, using: :btree
-
 end
