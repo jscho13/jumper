@@ -55,7 +55,7 @@ feature "user can edit venues and reviews" do
     click_button "Submit Changes"
 
     expect(page).to have_content("edited body")
-    expect(page).to have_content("5")
+    expect(page).to have_content("🌟 🌟 🌟 🌟 🌟")
   end
 
   scenario "user cannot edit another user's venue" do
