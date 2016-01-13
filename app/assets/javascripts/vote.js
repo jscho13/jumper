@@ -1,49 +1,32 @@
-var makeAjaxRequestUpPost = function(reviewButtonTo, venueID, reviewId, voteType) {
-  var request = $.ajax({
-    method: 'PATCH',
-    data: { up: voteType },
-    url: '/api/venues/' + venueID + '/reviews/' + reviewId
-  });
+$(function() {
+  var makeAjaxVoteRequest = function(url, data) {
+    var request = $.ajax({
+      method: 'PATCH',
+      data: data,
+      url: url
+    });
 
-  request.done(function(data) {
-    var review = $('#review-' + data.id)[0]
-    review.getElementsByClassName("helpful")[0].innerHTML = "Helpful: " + data.revup_count
-    review.getElementsByClassName("not-helpful")[0].innerHTML = "Not Helpful: " + data.revdown_count
-  });
-};
-
-var makeAjaxRequestDownPost = function(reviewButtonTo, venueID, reviewId, voteType) {
-  var request = $.ajax({
-    method: 'PATCH',
-    data: { down: voteType },
-    url: '/api/venues/' + venueID + '/reviews/' + reviewId
-  });
-
-  request.done(function(data) {
-    var review = $('#review-' + data.id)[0]
-    review.getElementsByClassName("helpful")[0].innerHTML = "Helpful: " + data.revup_count
-    review.getElementsByClassName("not-helpful")[0].innerHTML = "Not Helpful: " + data.revdown_count
-  });
-};
-
-$('#upvote').on('click', function(event) {
+    request.done(function(data) {
+      var review = $('#review-' + data.id);
+      review.find(".helpful").text("Helpful: " + data.revup_count)
+      review.find(".not-helpful").text("Not Helpful: " + data.revdown_count)
+    });
+  };
+  var onVoteClick = function(event) {
     event.preventDefault();
-    var reviewButton = event.target;
-    var venueId = reviewButton.baseURI.match(/^(.*?)(\d+)(\D*)$/)[2];
-    var reviewButtonTo = $(reviewButton).closest('.button_to');
-    var reviewId = $(reviewButtonTo).attr('action').match(/\/(\d+)\//)[1];
-    var voteType = "true";
+    var data;
+    var reviewButton = $(this);
+    if (reviewButton.hasClass("downvote")){
+      data = { down: "true", load_javascript: "true"}
+    } else {
+      data = { up: "true", load_javascript: "true" }
+    }
+    var form = reviewButton.find("form");
+    var url = form.attr('action');
 
-    makeAjaxRequestUpPost(reviewButtonTo, venueId, reviewId, voteType)
-  });
+    makeAjaxVoteRequest(url, data)
+  }
 
-$('#downvote').on('click', function(event) {
-    event.preventDefault();
-    var reviewButton = event.target;
-    var venueId = reviewButton.baseURI.match(/^(.*?)(\d+)(\D*)$/)[2];
-    var reviewButtonTo = $(reviewButton).closest('.button_to');
-    var reviewId = $(reviewButtonTo).attr('action').match(/\/(\d+)\//)[1];
-    var voteType = "true";
-
-    makeAjaxRequestDownPost(reviewButtonTo, venueId, reviewId, voteType)
-  });
+  $('.upvote').on('click', onVoteClick);
+  $('.downvote').on('click', onVoteClick);
+});
