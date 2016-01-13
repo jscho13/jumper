@@ -188,4 +188,11 @@ input[type=submit] {
 .box{
   display: block;
   float: left;
+
+}
+
+.button_to,
+.button_to div {
+  display: block;
+  float: left;
 }
