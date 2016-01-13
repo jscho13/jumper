@@ -4,6 +4,12 @@
   width: 45px;
 }
 
+.ellipsis { text-overflow: ellipsis; }
+
+.subheader {
+  overflow: hidden;
+}
+
  /* Off-Canvas */
  .right-off-canvas-toggle .menu {
    float: right;
@@ -102,6 +108,7 @@
      font-size: .75rem;
      width: auto;
    }
+
 
    /* Side-Nav Bar */
 

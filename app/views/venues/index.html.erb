@@ -7,7 +7,14 @@
     </div>
     <div class="floating-container">
       <% @venues.each do |venue| %>
-        <h4><%= link_to venue.venue_name, venue_path(venue) %></h4>
+        <div class="large-4 small-6 columns">
+          <img src="http://www.skydiveseb.com/data6/images/9.08beachjumpfx5.jpg">
+
+          <div class="panel">
+            <h4><%= link_to venue.venue_name, venue_path(venue) %></h4>
+            <h6 class="subheader"><%= venue.description %></h6>
+          </div>
+        </div>
       <% end %>
     </div>
     <div class="text-center">
