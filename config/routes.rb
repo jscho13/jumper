@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   end
   devise_for :users
 
+  namespace :admin do
+    resources :users, only: [:index, :destroy]
+  end
+
   root to: "venues#index"
   resources :users
 end

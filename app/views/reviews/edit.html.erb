@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="small-12 medium-10 medium-centered large-8 large-centered columns">
+    <h1>Update Review</h1>
+
+    <%= form_for [@venue, @review] do |f| %>
+
+    <div>
+      <%= f.label :rating %>
+      <%= f.collection_radio_buttons(:rating, @quantity_collection, :first, :last) %>
+    </div>
+
+    <div class="field">
+      <%= f.label :review_body, "Your Review" %><br />
+      <%= f.text_area :review_body %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Submit Changes" %>
+    </div>
+    <% end %>
+  </div>
+</div>

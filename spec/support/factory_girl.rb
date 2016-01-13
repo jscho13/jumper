@@ -1,26 +1,28 @@
 require 'faker'
 FactoryGirl.find_definitions
+include ApplicationHelper
 
 FactoryGirl.define do
   factory :user do
     sequence(:username) { |n| "SayWhaaaaatttt#{n}" }
     sequence(:email) { |n| "faketestuser#{n}@example.com" }
-    password { Faker::Internet.password }
+    sequence (:password) { |n| "password#{n}" }
   end
 
   factory :venue do
-    venue_name { Faker::Hipster.word }
-    description { Faker::Hipster.paragraph }
-    street_name { Faker::Address.street_address }
-    state { Faker::Address.state }
-    zip_code { Faker::Address.zip[0..4] }
-    city { Faker::Address.city }
-    price_range "2"
+    sequence(:venue_name) { |n| "GD BARDEN#{n}" }
+    sequence(:description) { |n| "here's a description #{n}" }
+    sequence(:street_name) { |n| "#{n} streetroad ln" }
+    sequence(:state) { |n| Venue::STATES[n % 50 + 1] }
+    sequence(:zip_code) { |n| "#{n}1234"[0..4] }
+    sequence(:city) { |n| "COOL CITY #{n}" }
+    sequence(:price_range) { |n| "#{n % 4 + 1}" }
+    user
   end
 
   factory :review do
-    rating 5
-    review_body { Faker::Hipster.paragraph }
+    sequence(:rating) { |n| n % 5 + 1 }
+    sequence(:review_body) { |n| "This is a review #{n}" }
     venue
     user
   end

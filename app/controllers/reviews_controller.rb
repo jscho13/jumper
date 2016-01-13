@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
 
   def create
     @quantity_collection = [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]
+
     @venue = Venue.find(params[:venue_id])
     @review = @venue.reviews.new(review_params)
     @review.user = current_user
@@ -62,6 +63,34 @@ class ReviewsController < ApplicationController
       flash[:notice] = vote.errors.full_messages.join(". ")
       redirect_to venue_path(@venue)
     end
+  end
+
+  def edit
+    @venue = Venue.find(params[:venue_id])
+    @review = Review.find(params[:id])
+    @quantity_collection = [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]
+  end
+
+  def update
+    @quantity_collection = [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]
+
+    @venue = Venue.find(params[:venue_id])
+    @review = @venue.reviews.find(params[:id])
+    @review.update(review_params)
+    if @review.save
+      flash.notice = "review added successfully"
+      redirect_to venue_path(@venue)
+    else
+      flash.notice = @review.errors.full_messages.join(". ")
+      render "edit"
+    end
+  end
+
+  def destroy
+    @review = Review.find(params[:id])
+    @venue = Venue.find(@review.venue_id)
+    @review.destroy
+    redirect_to venue_path(@venue)
   end
 
   private
