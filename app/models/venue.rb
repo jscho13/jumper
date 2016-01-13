@@ -22,8 +22,8 @@ class Venue < ActiveRecord::Base
   pg_search_scope :search_by_venue_name,
   against: :venue_name,
   :using => {
-              :tsearch => {:prefix => true}
-            }
+    :tsearch => {:prefix => true}
+  }
   # optional multisearch support
   # multisearchable against: [:venue_name, :street_name, :city, :state, :zip_code]
   # PgSearch::Multisearch.rebuild(Venue)
