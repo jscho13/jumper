@@ -1,18 +1,21 @@
 Rails.application.routes.draw do
 
   root to: "venues#index"
+  get '/search' => 'search#index'
 
+  devise_for :users
+  resources :users
   resources :venues do
     resources :reviews
-    post 'upvote', to: 'votes#create_upvote'
-    post 'downvote', to: 'votes#create_downvote'
   end
-  resources :users
-  devise_for :users
 
   namespace :admin do
     resources :users, only: [:index, :destroy]
   end
 
-  get '/search' => 'search#index'
+  namespace :api do
+    resources :venues do
+      resources :reviews, only: [:update]
+    end
+  end
 end
