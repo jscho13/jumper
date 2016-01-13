@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "admin can delete reviews, venues, and users" do
+feature "email is sent when review is created" do
   # let!(:user) { FactoryGirl.create(:user) } self-13
   # let!(:user_2) { FactoryGirl.create(:user) } self-14
   let!(:venue) { FactoryGirl.create(:venue) }
@@ -16,9 +16,7 @@ feature "admin can delete reviews, venues, and users" do
     fill_in "Your Review", with: "Cool"
     click_button "Add review"
 
-    binding.pry
-
     expect(ActionMailer::Base.deliveries.count).to eq(1)
-    # mail_to = User.find(venue.user_id).email
+    expect(ActionMailer::Base.deliveries[0].to.first).to eq(User.find(venue.user_id).email)
   end
 end
