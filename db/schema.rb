@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112153315) do
+ActiveRecord::Schema.define(version: 20160113201652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "identities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "pg_search_documents", force: :cascade do |t|
     t.text     "content"
@@ -53,6 +63,7 @@ ActiveRecord::Schema.define(version: 20160112153315) do
     t.string   "username",                                  null: false
     t.string   "avatar"
     t.string   "role",                   default: "member", null: false
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -84,4 +95,5 @@ ActiveRecord::Schema.define(version: 20160112153315) do
 
   add_index "votes", ["review_id", "user_id"], name: "index_votes_on_review_id_and_user_id", unique: true, using: :btree
 
+  add_foreign_key "identities", "users"
 end
