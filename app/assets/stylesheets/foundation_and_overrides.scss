@@ -104,7 +104,7 @@ $include-html-global-classes: $include-html-classes;
 // $smoke       : #EEEEEE;
 // $gainsboro   : #DDDDDD;
 // $iron        : #CCCCCC;
-// $base        : #AAAAAA;
+$base        : #AAAAAA;
 // $aluminum    : #999999;
 // $jumbo       : #888888;
 // $monsoon     : #777777;
@@ -124,7 +124,7 @@ $include-html-global-classes: $include-html-classes;
 // $info-color: #a0d3e8;
 
 // We use these to control various global styles
-// $body-bg: $white;
+   $body-bg: $base;
 // $body-font-color: $jet;
 // $body-font-family: $font-family-sans-serif;
 // $body-font-weight: $font-weight-normal;
@@ -243,6 +243,8 @@ $header-font-family: 'Open Sans', sans-serif;
 // $subheader-font-weight: $font-weight-normal;
 // $subheader-top-margin: .2rem;
 // $subheader-bottom-margin: .5rem;
+
+
 
 // A general <small> styling
 // $small-font-size: 60%;

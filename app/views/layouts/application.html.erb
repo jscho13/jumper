@@ -1,120 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
 
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "vendor/modernizr" %>
-  <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
-  <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 
-</head>
-
-<body>
-
-  <nav class="top-bar" data-topbar role="navigation">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="#" style="font-family: 'Righteous', cursive; font-size: 25px">Jump<u>e</u>r</a></h1>
-      </li>
-    </ul>
-
-    <section class="top-bar-section">
-      <!-- Right Nav Section -->
-      <ul class="right">
-        <li class="has-form">
-          <div class="row collapse">
-            <%= form_for venues_path, method: :get do %>
-              <div class="large-8 small-9 columns">
-                <%= text_field_tag :query, params[:query], attr: "Find Stuff" %>
-              </div>
-              <div class="large-4 small-3 columns">
-                <%= submit_tag "Search", name: nil %>
-              </div>
-            <% end %>
-          </div>
-        </li>
-        <li class="has-dropdown">
-          <a href="#">Filter by Boston Neighborhood</a>
-          <ul class="dropdown">
-            <li><a href="#">Back Bay</a></li>
-            <li><a href="#">Central Square</a></li>
+    <div data-sticky-container>
+      <div class="sticky" data-sticky data-margin-top=0 style="width:100%";>
+        <nav class="top-bar" data-topbar role="navigation">
+          <ul class="title-area">
+            <li class="name">
+              <h1><a href="#" style="font-family: 'Righteous', cursive; font-size: 25px">Jump<u>e</u>r</a></h1>
+            </li>
           </ul>
-        </li>
-        <% if user_signed_in? %>
-          <% unless current_user.avatar.url.nil? %>
-            <li class="picture"><%= image_tag(current_user.avatar) %></li>
-          <% end %>
-        <li><%= link_to "Profile", "/users/#{current_user.id}" %></li>
-        <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
-        <% else %>
-        <li><%= link_to "Sign In", new_user_session_path %></li>
-        <% end %>
-      </ul>
-    </section>
-  </nav>
-
-  <div class="off-canvas-wrap" data-offcanvas>
-  <div class="inner-wrap">
-  <nav class="header"></nav>
-    <a class="right-off-canvas-toggle" href="#" >
-      <div class="menu">
-        <div class="off-canvas-bar"></div>
-        <div class="off-canvas-middle-bar"></div>
-        <div class="off-canvas-bottom-bar"></div>
+          <section class="top-bar-section">
+            <!-- Right Nav Section -->
+            <ul class="right">
+              <li class="has-form">
+                <div class="row collapse" style="background-color: #ee6f19">
+                  <%= form_for venues_path, method: :get do %>
+                    <div class="large-8 small-9 columns">
+                      <%= text_field_tag :query, params[:query], attr: "Find Stuff" %>
+                    </div>
+                    <div class="large-4 small-3 columns">
+                      <%= submit_tag "Search", name: nil %>
+                    </div>
+                  <% end %>
+                </div>
+              </li>
+              <li class="has-dropdown">
+                <a href="#">Filter by Boston Neighborhood</a>
+                <ul class="dropdown">
+                  <li><a href="#">Back Bay</a></li>
+                  <li><a href="#">Central Square</a></li>
+                </ul>
+              </li>
+              <% if user_signed_in? %>
+                <% unless current_user.avatar.url.nil? %>
+                  <li class="picture"><%= image_tag(current_user.avatar) %></li>
+                <% end %>
+              <li><%= link_to "Profile", "/users/#{current_user.id}" %></li>
+              <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+              <% else %>
+              <li><%= link_to "Sign In", new_user_session_path %></li>
+              <% end %>
+            </ul>
+          </section>
+        </nav>
       </div>
-    </a>
-  </nav>
-    <!-- Off Canvas Menu -->
-    <aside class="right-off-canvas-menu">
-        <!-- whatever you want goes here -->
-        <ul class="side-nav main">
+    </div>
+  </head>
 
-          <li><a href="#">bowling</a></li>
-          <li><a href="#">basketball</a></li>
+  <body>
+    <div class="off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+        <a class="right-off-canvas-toggle" href="#" >
+          <div class="menu">
+            <div class="off-canvas-bar"></div>
+            <div class="off-canvas-middle-bar"></div>
+            <div class="off-canvas-bottom-bar"></div>
+          </div>
+        </a>
+      </nav>
+        <!-- Off Canvas Menu -->
+        <aside class="right-off-canvas-menu">
+            <!-- whatever you want goes here -->
+            <ul class="side-nav main">
+              <li><a href="#">bowling</a></li>
+              <li><a href="#">basketball</a></li>
+            </ul>
+        </aside>
 
-        </ul>
-    </aside>
+      <div class="container row">
+        <% flash.each do |key, value| %>
+          <div class="flash <%= key %>"><%= value %></div>
+        <% end %>
 
-
-  <div class="container row">
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key %>"><%= value %></div>
-    <% end %>
-
-    <%= yield %>
-
-  </div>
-
-  <!-- close the off-canvas menu -->
-  <a class="exit-off-canvas"></a>
+        <%= yield %>
+      </div>
+      <!-- close the off-canvas menu -->
+      <a class="exit-off-canvas"></a>
+      </div>
+    </div>
+  </body>
 
   <footer>
-  <ul class="inline-list social">
-    <li><i class="fi-social-facebook"></i></li>
-    <li><i class="fi-social-pinterest"></i></li>
-    <li><i class="fi-social-youtube"></i></li>
-    <li><i class="fi-social-twitter"></i></li>
-  </ul>
-</footer>
-
-</div>
-</div>
-  <script>
-  $(function() {
-    $(".right-off-canvas-toggle, .exit-off-canvas").click(function() {
-      $(".top-bar").toggleClass("top-bar-close");
-      $(".middle-bar").toggleClass("middle-bar-close");
-      $(".bottom-bar").toggleClass("bottom-bar-close");
-    });
-  });
-  </script>
-</body>
+    <ul class="inline-list social">
+      <li><i class="fi-social-facebook"></i></li>
+      <li><i class="fi-social-pinterest"></i></li>
+      <li><i class="fi-social-youtube"></i></li>
+      <li><i class="fi-social-twitter"></i></li>
+    </ul>
+  </footer>
 </html>
+
+<script>
+$(function() {
+  $(".right-off-canvas-toggle, .exit-off-canvas").click(function() {
+    $(".top-bar").toggleClass("top-bar-close");
+    $(".middle-bar").toggleClass("middle-bar-close");
+    $(".bottom-bar").toggleClass("bottom-bar-close");
+  });
+});
+</script>
