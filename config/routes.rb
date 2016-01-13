@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   resources :venues do
     resources :reviews
   end
-
-  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
   namespace :admin do
     resources :users, only: [:index, :destroy]
