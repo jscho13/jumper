@@ -15,4 +15,6 @@ class Review < ActiveRecord::Base
     return false if user.nil?
     user.admin? || self.user == user
   end
+
+  has_many :votes
 end
