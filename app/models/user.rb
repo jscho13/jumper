@@ -12,4 +12,6 @@ class User < ActiveRecord::Base
   def admin?
     role == "admin"
   end
+  
+  has_many :votes
 end

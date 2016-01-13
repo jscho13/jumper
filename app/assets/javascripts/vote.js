@@ -1,45 +1,3 @@
-<h1><%= @venue.venue_name %></h1>
-<p><%= @venue.description %></p>
-
-<% if @venue.deletable_by(current_user) %>
-  <%= button_to "Delete Venue", venue_path, class: "button", method: "delete", label: "Delete Venue"%>
-<% end %>
-<% if @venue.deletable_by(current_user) %>
-  <%= button_to "Edit Venue", edit_venue_path, class: "button", method: "get", label: "Edit Venue"%>
-<% end %>
-
-<ul>
-  <% @reviews.each do |review| %>
-<div id="review-<%= review.id %>"
-    <li> <%= review.review_body %></li>
-    <%= review.rating %>
-  <div class="helpful">Helpful: <%= review.revup_count %></div>
-  <div class="not-helpful">Not Helpful: <%= review.revdown_count %></div>
-  <div id="upvote">
-      <%= button_to "helpful", "/api/venues/#{@venue.id}/reviews/#{review.id}", method:"patch", params: {up: "true", load_javascript: "false"} %>
-    </div>
-    <div id="downvote">
-      <%= button_to "not helpful", "/api/venues/#{@venue.id}/reviews/#{review.id}", method:"patch", params: {down: "true", load_javascript: "false"}%>
-    </div>
-  </div>
-  <% if review.deletable_by(current_user) %>
-  <%= button_to "Delete Review", venue_review_path(@venue, review), class: "button", method: "delete", label: "Delete Review" %>
-  <% end %>
-  <% if review.deletable_by(current_user) %>
-  <%= button_to "Edit Review", edit_venue_review_path(@venue, review), class: "button", method: "get", label: "Edit Review" %>
-  <% end %>
-  <% end %>
-</ul>
-
-<div class="text-center">
-  <a href="<%= new_venue_review_path(@venue) %>" class="button">Add a New Review</a>
-</div>
-
-<div class="text-center">
-  <a href="<%= venues_path %>" class="button">All Venues</a>
-</div>
-
-<script>
 var makeAjaxRequestUpPost = function(reviewButtonTo, venueID, reviewId, voteType) {
   var request = $.ajax({
     method: 'PATCH',
@@ -89,4 +47,3 @@ $('#downvote').on('click', function(event) {
 
     makeAjaxRequestDownPost(reviewButtonTo, venueId, reviewId, voteType)
   });
-</script>
