@@ -1,3 +1,6 @@
+li {
+  list-style-type: none;
+}
 
 .picture {
   height: 45px;
@@ -163,3 +166,26 @@
   overflow: hidden;
   bottom: 0;
   left: 0; }
+
+input[type=submit] {
+   padding:5px 15px;
+   background:#ccc;
+   border:0 none;
+   cursor:pointer;
+   -webkit-border-radius: 5px;
+   border-radius: 5px;
+   color:#008CBA;
+   background-color: #F9F9F9;
+}
+
+.vote-wrap {
+ width: 100%;
+ height: 100%;
+ float: left;
+ display: block;
+}
+
+.box{
+  display: block;
+  float: left;
+}
