@@ -6,10 +6,11 @@ class Review < ActiveRecord::Base
     less_than_or_equal_to: 5,
   }
   validates :venue_id, presence: true
-  validates :user_id, presence: true
+  validates :user, presence: true
 
   belongs_to :venue
   belongs_to :user
+  has_many :votes
 
   include PgSearch
   pg_search_scope :search_by_review_body,
@@ -17,4 +18,8 @@ class Review < ActiveRecord::Base
     :using => {
                 :tsearch => {:prefix => true}
               }
+  def deletable_by(user)
+    return false if user.nil?
+    user.admin? || self.user == user
+  end
 end

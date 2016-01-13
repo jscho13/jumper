@@ -1,15 +1,47 @@
 <h1><%= @venue.venue_name %></h1>
 <p><%= @venue.description %></p>
+
+<% if @venue.deletable_by(current_user) %>
+  <%= button_to "Delete Venue", venue_path, class: "button", method: "delete", label: "Delete Venue"%>
+<% end %>
+<% if @venue.deletable_by(current_user) %>
+  <%= button_to "Edit Venue", edit_venue_path, class: "button", method: "get", label: "Edit Venue"%>
+<% end %>
+
 <ul>
   <% @reviews.each do |review| %>
+  <div id="review-<%= review.id %>"
   <li> <%= review.review_body %></li>
-  <%= review.rating %>
+  Rating: <%= review.rating %></br>
+  Helpful: <%= review.revup_count %>
+  Not Helpful: <%= review.revdown_count %>
+  <div class="upvote" id="upvote">
+      <%= button_to "helpful", venue_review_path(@venue,review), method:"patch", params: {up: true}%>
+    </div>
+    <div class="downvote" id="downvote">
+      <%= button_to "not helpful", venue_review_path(@venue,review), method:"patch", params: {down: true}%>
+    </div>
+  </div>
   <% end %>
 </ul>
 
 <div class="text-center">
   <a href="<%= new_venue_review_path(@venue) %>" class="button">Add a New Review</a>
-  </div>
-  <div class="text-center">
-    <a href="<%= venues_path %>" class="button">All Venues</a>
-  </div>
+</div>
+
+<div class="text-center">
+  <a href="<%= venues_path %>" class="button">All Venues</a>
+</div>
+
+<script>
+$('.upvote').on('click', function(e) {
+  e.preventDefault();
+  debugger;
+})
+</script>
+<script>
+$('.downvote').on('click', function(e) {
+  e.preventDefault();
+  debugger;
+})
+</script>

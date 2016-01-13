@@ -8,6 +8,7 @@ class VenuesController < ApplicationController
   def show
     @venue = Venue.find(params[:id])
     @reviews = @venue.reviews
+    @vote = Vote.new
   end
 
   def new
@@ -16,6 +17,7 @@ class VenuesController < ApplicationController
 
   def create
     @venue = Venue.new(venue_params)
+    @venue.user = current_user
     if @venue.save
       flash.notice = "Venue added successfully"
       redirect_to venues_path
@@ -23,6 +25,28 @@ class VenuesController < ApplicationController
       flash.notice = @venue.errors.full_messages.join(". ")
       render "new"
     end
+  end
+
+  def edit
+    @venue = Venue.find(params[:id])
+  end
+
+  def update
+    @venue = Venue.find(params[:id])
+    @venue.update(venue_params)
+    if @venue.save
+      flash.notice = "Venue added successfully"
+      redirect_to venue_path(@venue)
+    else
+      flash.notice = @venue.errors.full_messages.join(". ")
+      render "edit"
+    end
+  end
+
+  def destroy
+    @venue = Venue.find(params[:id])
+    @venue.destroy
+    redirect_to venues_path
   end
 
   private

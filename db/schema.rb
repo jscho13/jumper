@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160107183946) do
+ActiveRecord::Schema.define(version: 20160112153315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,29 +27,32 @@ ActiveRecord::Schema.define(version: 20160107183946) do
   add_index "pg_search_documents", ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
-    t.integer  "rating",      null: false
+    t.integer  "rating",                    null: false
     t.text     "review_body"
-    t.integer  "user_id",     null: false
+    t.integer  "user_id",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "venue_id",    null: false
+    t.integer  "venue_id",                  null: false
+    t.integer  "revup_count",   default: 0, null: false
+    t.integer  "revdown_count", default: 0, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.string   "email",                  default: "",       null: false
+    t.string   "encrypted_password",     default: "",       null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,        null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.string   "username",                            null: false
+    t.string   "username",                                  null: false
     t.string   "avatar"
+    t.string   "role",                   default: "member", null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -66,8 +69,22 @@ ActiveRecord::Schema.define(version: 20160107183946) do
     t.integer  "price_range"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id",     null: false
   end
 
+<<<<<<< HEAD
   add_index "venues", ["venue_name"], name: "index_venues_on_venue_name", unique: true, using: :btree
 
+  create_table "votes", force: :cascade do |t|
+    t.integer  "review_id",                  null: false
+    t.integer  "user_id",                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "up",         default: false, null: false
+  end
+
+  add_index "votes", ["review_id", "user_id"], name: "index_votes_on_review_id_and_user_id", unique: true, using: :btree
+
+=======
+>>>>>>> f116f79e16adf92ac1594c829a34a3863a0204da
 end
