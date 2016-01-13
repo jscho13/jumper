@@ -1,7 +1,21 @@
-var makeAjaxRequestPost = function(reviewButtonTo, venueID, reviewId, voteType) {
+var makeAjaxRequestUpPost = function(reviewButtonTo, venueID, reviewId, voteType) {
   var request = $.ajax({
     method: 'PATCH',
     data: { up: voteType },
+    url: '/api/venues/' + venueID + '/reviews/' + reviewId
+  });
+
+  request.done(function(data) {
+    var review = $('#review-' + data.id)[0]
+    review.getElementsByClassName("helpful")[0].innerHTML = "Helpful: " + data.revup_count
+    review.getElementsByClassName("not-helpful")[0].innerHTML = "Not Helpful: " + data.revdown_count
+  });
+};
+
+var makeAjaxRequestDownPost = function(reviewButtonTo, venueID, reviewId, voteType) {
+  var request = $.ajax({
+    method: 'PATCH',
+    data: { down: voteType },
     url: '/api/venues/' + venueID + '/reviews/' + reviewId
   });
 
@@ -20,7 +34,7 @@ $('#upvote').on('click', function(event) {
     var reviewId = $(reviewButtonTo).attr('action').match(/\/(\d+)\//)[1];
     var voteType = "true";
 
-    makeAjaxRequestPost(reviewButtonTo, venueId, reviewId, voteType)
+    makeAjaxRequestUpPost(reviewButtonTo, venueId, reviewId, voteType)
   });
 
 $('#downvote').on('click', function(event) {
@@ -31,5 +45,5 @@ $('#downvote').on('click', function(event) {
     var reviewId = $(reviewButtonTo).attr('action').match(/\/(\d+)\//)[1];
     var voteType = "true";
 
-    makeAjaxRequestPost(reviewButtonTo, venueId, reviewId, voteType)
+    makeAjaxRequestDownPost(reviewButtonTo, venueId, reviewId, voteType)
   });

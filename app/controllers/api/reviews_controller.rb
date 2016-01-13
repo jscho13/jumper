@@ -39,7 +39,7 @@ class Api::ReviewsController < ActionController::Base
       end
     end
     if vote.save && @review.save
-      # flash[:notice] = "You have voted!"
+      flash[:notice] = "You have voted!"
       render(json: @review.to_json )
     else
       flash[:notice] = vote.errors.full_messages.join(". ")
