@@ -3,7 +3,9 @@
     <div class="small-12 medium-10 medium-centered large-8 large-centered columns">
 
       <div class="floating-container">
-        <h1>Venues</h1>
+        <div class="row venue-header">
+          <h1>Venues</h1>
+        </div>
       </div>
 
       <% @venues.each do |venue| %>
@@ -34,7 +36,7 @@
     <div class="text-center">
       <a href="<%= venues_path %>" class="button">All Venues</a>
     </div>
+    <%= paginate @venues %>
   </div>
 </div>
-<%= paginate @venues %>
 </div>

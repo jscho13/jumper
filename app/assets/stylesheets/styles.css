@@ -198,3 +198,8 @@ footer {
   margin-top: 20px;
   text-align: left;
 }
+
+.venue-header h1 {
+  text-align: center;
+  color: #008CBA;
+}
