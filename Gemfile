@@ -27,8 +27,6 @@ gem 'fog'
 gem 'carrierwave'
 gem 'foundation-rails'
 gem 'kaminari'
-gem 'mailcatcher'
-gem 'actionmailer'
 gem 'pg_search'
 
 
@@ -43,6 +41,8 @@ gem 'pg_search'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'mailcatcher'
+  gem 'actionmailer'
   gem 'pry-rails'
   gem 'byebug'
   gem 'rspec-rails'
