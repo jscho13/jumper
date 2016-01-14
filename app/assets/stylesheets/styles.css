@@ -1,3 +1,7 @@
+body {
+  background: #F9F9F9;
+}
+
 li {
   list-style-type: none;
 }
@@ -184,19 +188,18 @@ input[type=submit] {
  display: block;
 }
 
-.box{
+.box {
   display: block;
   float: left;
 }
 
-.twitter{
-  width: 5%;
-  height: 10%;
+.twitter {
+  width: 2rem;
+  height: auto;
 }
 
 footer {
   margin-top: 20px;
-  text-align: left;
 }
 
 .venue-header h1 {

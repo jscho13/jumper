@@ -1,0 +1,43 @@
+<div data-sticky-container>
+  <div class="sticky" data-sticky data-margin-top=0 style="width:100%";>
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/" style="font-family: 'Righteous', cursive; font-size: 25px">Jump<u>e</u>r</a></h1>
+        </li>
+      </ul>
+      <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+          <li class="has-form">
+            <div class="row collapse" style="background-color: #ee6f19">
+              <%= form_tag("/search", method: "get") do %>
+                <div class="large-8 small-9 columns">
+                  <%= text_field_tag :query, params[:query], attr: "Find Stuff" %>
+                </div>
+                <div class="large-4 small-3 columns">
+                  <%= submit_tag "Search", name: nil %>
+                </div>
+              <% end %>
+            </div>
+          </li>
+          <li class="has-dropdown">
+            <a href="#">Filter by Boston Neighborhood</a>
+            <ul class="dropdown">
+              <li><a href="#">Back Bay</a></li>
+              <li><a href="#">Central Square</a></li>
+            </ul>
+          </li>
+          <% if user_signed_in? %>
+            <% unless current_user.avatar.url.nil? %>
+              <li class="picture"><%= image_tag(current_user.avatar) %></li>
+            <% end %>
+          <li><%= link_to "Profile", "/users/#{current_user.id}" %></li>
+          <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+          <% else %>
+          <li id="sign-in"><%= link_to "Sign In", new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </section>
+    </nav>
+  </div>

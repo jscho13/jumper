@@ -14,6 +14,9 @@ $(function() {
   };
   var onVoteClick = function(event) {
     event.preventDefault();
+    // if (document.getElementById("sign-in").innerHTML == '<a href="/users/sign_in">Sign In</a>') {
+    //   alert("You need to sign in before you can vote!");
+    // };
     var data;
     var reviewButton = $(this);
     if (reviewButton.hasClass("downvote")){
