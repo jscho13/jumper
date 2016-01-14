@@ -236,3 +236,9 @@ footer {
   margin-top: 5em;
   z-index:1;
 }
+
+.paginate-center {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
