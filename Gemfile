@@ -27,6 +27,7 @@ gem 'fog'
 gem 'carrierwave'
 gem 'foundation-rails'
 gem 'actionmailer'
+gem 'mailcatcher'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -42,7 +43,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'byebug'
   gem 'rspec-rails'
-  gem 'mailcatcher'
 end
 
 group :test do
