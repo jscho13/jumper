@@ -13,9 +13,9 @@ class Review < ActiveRecord::Base
   has_many :votes
 
   include PgSearch
-  pg_search_scope :search_by_review_body,against: :review_body, using: {
-    tsearch: { prefix: true }
-  }
+  pg_search_scope :search_by_review_body,
+                  against: :review_body,
+                  using: { tsearch: { prefix: true } }
 
   def deletable_by(user)
     return false if user.nil?

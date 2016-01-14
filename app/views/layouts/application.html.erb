@@ -1,36 +1,30 @@
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+  <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
 
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
-    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-  </head>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "vendor/modernizr" %>
+  <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
 
-  <body>
-    <%= render "layouts/top_bar" %>
+<body>
+  <%= render "layouts/top_bar" %>
 
-    <%= render "layouts/off_canvas_menu_start" %>
-    <div class="row">
-      <%= render "layouts/flash" %>
-      <%= yield %>
-      <%= render "layouts/footer" %>
+  <div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+      <%= render "layouts/off_canvas_menu" %>
+      <div class="row">
+        <%= render "layouts/flash" %>
+        <%= yield %>
+        <%= render "layouts/footer" %>
+      </div>
+
+      <a class="exit-off-canvas"></a>
     </div>
-
-    <%= render "layouts/off_canvas_menu_end" %>
-
-    <script>
-    $(function() {
-      $(".right-off-canvas-toggle, .exit-off-canvas").click(function() {
-        $(".top-bar").toggleClass("top-bar-close");
-        $(".middle-bar").toggleClass("middle-bar-close");
-        $(".bottom-bar").toggleClass("bottom-bar-close");
-      });
-    });
-    </script>
-  </body>
+  </div>
+</body>
 </html>

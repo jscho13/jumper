@@ -4,12 +4,11 @@
 
   <% if @venue.deletable_by(current_user) %>
     <%= button_to "Delete Venue", venue_path, class: "button", method: "delete", label: "Delete Venue"%>
-  <% elsif @venue.deletable_by(current_user) %>
     <%= button_to "Edit Venue", edit_venue_path, class: "button", method: "get", label: "Edit Venue"%>
   <% end %>
 
 <ul>
-  <%= render "venues/reviews" %>
+  <%= render @reviews %>
 </ul>
 
 <div class="text-center">
