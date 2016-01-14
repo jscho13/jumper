@@ -8,10 +8,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   validates :username, presence: true, uniqueness: true
   has_many :reviews
+  has_many :votes
 
   def admin?
     role == "admin"
   end
-
-  has_many :votes
 end

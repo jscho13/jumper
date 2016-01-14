@@ -31,6 +31,6 @@ feature "user sees a list of reviews for the given acitivty" do
     click_button "Add review"
 
     expect(page).to have_content("Cool")
-    expect(page).to have_content("4")
+    expect(page).to have_content("🌟 🌟 🌟 🌟")
   end
 end

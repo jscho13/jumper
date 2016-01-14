@@ -2,12 +2,12 @@ class VenuesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @venues = Venue.all
+    @venues = Venue.page(params[:page]).per(9)
   end
 
   def show
     @venue = Venue.find(params[:id])
-    @reviews = @venue.reviews.order(:id)
+    @reviews = @venue.reviews.page(params[:page]).per(6)
     @vote = Vote.new
   end
 
@@ -47,6 +47,10 @@ class VenuesController < ApplicationController
     @venue = Venue.find(params[:id])
     @venue.destroy
     redirect_to venues_path
+  end
+
+  def welcome
+    render "home", layout: false
   end
 
   private

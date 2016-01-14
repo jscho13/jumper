@@ -1,14 +1,15 @@
 <div class="full-height bg-img">
-<div class="row">
-  <div class="small-12 medium-10 medium-centered large-8 large-centered columns">
+  <div class="row">
+    <div class="small-12 medium-10 medium-centered large-8 large-centered columns">
 
-    <div class="floating-container">
-      <h1>Venues</h1>
-    </div>
-    <div class="floating-container">
-      <% @venues.each do |venue| %>
-        <h4><%= link_to venue.venue_name, venue_path(venue) %></h4>
-      <% end %>
+      <div class="floating-container">
+        <div class="row venue-header">
+          <h1 class="animated fadeInDown">Venues</h1>
+        </div>
+      </div>
+
+      <%= render @venues %>
+
     </div>
     <div class="text-center">
       <a href="<%= new_venue_path %>" class="button">Add a New Venue!</a>
@@ -16,6 +17,7 @@
     <div class="text-center">
       <a href="<%= venues_path %>" class="button">All Venues</a>
     </div>
+    <%= paginate @venues %>
   </div>
 </div>
 </div>

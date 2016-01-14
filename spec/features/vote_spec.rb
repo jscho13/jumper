@@ -17,7 +17,7 @@ feature "user sees a list of reviews for the given acitivty" do
     page.find_by_id("review-#{review.id}").find_button("helpful").click
     visit venue_path(venue)
 
-    expect(page).to have_content "Helpful: 1"
+    expect(page).to have_content "1"
   end
 
   scenario "downvote button counts vote -1" do
@@ -26,7 +26,7 @@ feature "user sees a list of reviews for the given acitivty" do
     click_button "not helpful"
     visit venue_path(venue)
 
-    expect(page).to have_content "Not Helpful: 1"
+    expect(page).to have_content "1"
   end
 
   scenario "only one button can be activated" do
@@ -36,8 +36,8 @@ feature "user sees a list of reviews for the given acitivty" do
     click_button "helpful"
     visit venue_path(venue)
 
-    expect(page).to have_content "Helpful: 1"
-    expect(page).to have_content "Not Helpful: 0"
+    expect(page).to have_content "1"
+    expect(page).to have_content "0"
   end
 
   scenario "undo upvote" do
@@ -46,7 +46,7 @@ feature "user sees a list of reviews for the given acitivty" do
     click_button "helpful"
     click_button "helpful"
 
-    expect(page).to have_content "Helpful: 0"
+    expect(page).to have_content "0"
   end
 
   scenario "undo downvote" do
@@ -55,6 +55,6 @@ feature "user sees a list of reviews for the given acitivty" do
     click_button "not helpful"
     click_button "not helpful"
 
-    expect(page).to have_content "Not Helpful: 0"
+    expect(page).to have_content "0"
   end
 end
