@@ -206,3 +206,33 @@ footer {
   text-align: center;
   color: #008CBA;
 }
+
+.container { position:relative; }
+.container video {
+  position: fixed;
+  z-index:0;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
+}
+
+.overlay a {
+  background: rgba(0, 215, 255, 0.4);
+  color: white;
+  text-align: center;
+  font-size: 70px;
+  position:absolute;
+  width: 100%;
+  margin: auto;
+  margin-top: 5em;
+  z-index:1;
+}

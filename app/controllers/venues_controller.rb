@@ -49,6 +49,10 @@ class VenuesController < ApplicationController
     redirect_to venues_path
   end
 
+  def welcome
+    render "home", layout: false
+  end
+
   private
 
   def venue_params
