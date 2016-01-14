@@ -2,7 +2,7 @@ class VenuesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @venues = Venue.page(params[:page]).per(6)
+    @venues = Venue.page(params[:page]).per(9)
   end
 
   def show
