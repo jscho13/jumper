@@ -26,7 +26,6 @@ gem 'database_cleaner'
 gem 'fog'
 gem 'carrierwave'
 gem 'foundation-rails'
-gem 'mailcatcher'
 gem 'actionmailer'
 
 # Use ActiveModel has_secure_password
@@ -43,6 +42,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'byebug'
   gem 'rspec-rails'
+  gem 'mailcatcher'
 end
 
 group :test do
