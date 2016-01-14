@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :authorize_user
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(5)
   end
 
   def destroy
