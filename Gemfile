@@ -28,7 +28,6 @@ gem 'carrierwave'
 gem 'foundation-rails'
 gem 'mailcatcher'
 gem 'actionmailer'
-
 gem 'omniauth'
 gem 'omniauth-twitter'
 # Use ActiveModel has_secure_password
