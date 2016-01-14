@@ -28,15 +28,20 @@ class UsersController < ApplicationController
   # GET/PATCH /users/:id/finish_signup
   def finish_signup
     # authorize! :update, @user
+    @user = set_user
     if request.patch? && params[:user] #&& params[:user][:email]
       if @user.update(user_params)
-        @user.skip_reconfirmation!
+        # @user.skip_reconfirmation!
         sign_in(@user, :bypass => true)
         redirect_to @user, notice: 'Your profile was successfully updated.'
       else
         @show_errors = true
       end
     end
+    # if User.where("email = ?", @user[:email])
+    # elsif no account
+    #   user.
+    redirect_to venues_path
   end
 
   # DELETE /users/:id.:format
@@ -55,7 +60,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      accessible = [ :name, :email ] # extend with your own params
+      accessible = [ :name, :email ] unless params[:user][:email].blank?
       accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
       params.require(:user).permit(accessible)
     end

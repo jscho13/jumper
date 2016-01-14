@@ -1,4 +1,7 @@
 class ReviewsController < ApplicationController
+  require "httpclient"
+  require "json"
+
   before_action :authenticate_user!, except: [:index, :show]
 
   def new
@@ -15,7 +18,12 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     if @review.save
       ReviewMailer.new_review(@review, @venue).deliver_later
+      #twitter sender thinger
+
+      response = HTTPClient.new.post("https://api.twitter.com/1.1/statuses/update.json?status=Maybe%20he%27ll%20finally%20find%20his%20keys.%20%23peterfalk")
       binding.pry
+      # JSON.parse(response.body)["events"]
+
       flash.notice = "review added successfully"
       redirect_to venue_path(@venue)
     else

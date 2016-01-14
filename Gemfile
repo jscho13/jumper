@@ -30,6 +30,7 @@ gem 'mailcatcher'
 gem 'actionmailer'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem "httpclient"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

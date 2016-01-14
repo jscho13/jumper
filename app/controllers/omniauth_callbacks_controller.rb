@@ -16,7 +16,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # end
 
   def twitter
-    binding.pry
     @user = User.find_for_oauth(env["omniauth.auth"], current_user)
 
     if @user.persisted?
@@ -41,3 +40,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 end
+
+
+
+#omniauth.rb info
+# Rails.application.config.middleware.use OmniAuth::Builder do
+#   provider :twitter, ENV['TWITTER_API_KEY'], ENV['TWITTER_API_SECRET']
+# end
