@@ -7,6 +7,15 @@
         </li>
       </ul>
       <section class="top-bar-section">
+        <% if user_signed_in? %>
+          <% if current_user.role == "admin" %>
+            <ul class="left">
+              <div class="small-6 columns text-center">
+                <%= button_to "Admin", admin_users_path, class: "button", method: "get", label: "Admin"%>
+              </div>
+            </ul>
+          <% end %>
+        <% end %>
         <!-- Right Nav Section -->
         <ul class="right">
           <li class="has-form">
