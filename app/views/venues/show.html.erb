@@ -1,15 +1,23 @@
-<div class="column">
+<div class="title-header show-footer">
   <h1><%= @venue.venue_name %></h1>
   <p><%= @venue.description %></p>
 
   <% if @venue.deletable_by(current_user) %>
-    <%= button_to "Delete Venue", venue_path, class: "button", method: "delete", label: "Delete Venue"%>
+  <div class="small-6 columns text-center">
     <%= button_to "Edit Venue", edit_venue_path, class: "button", method: "get", label: "Edit Venue"%>
+  </div>
+  <div class="small-6 columns text-center">
+    <%= button_to "Delete Venue", venue_path, class: "button", method: "delete", label: "Delete Venue"%>
+  </div>
   <% end %>
 
-<ul>
-  <%= render @reviews %>
-</ul>
+<h3>Reviews</h3>
+
+<table>
+  <tbody>
+    <%= render @reviews %>
+  </tbody>
+</table>
 
 <div class="text-center">
   <a href="<%= new_venue_review_path(@venue) %>" class="button">Add a New Review</a>
