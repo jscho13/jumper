@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe User do
+
+  it { should have_many :reviews }
+  it { should have_many :votes }
+
   describe "email validations" do
     subject { FactoryGirl.build(:user) }
     it { should validate_uniqueness_of(:email).case_insensitive }
