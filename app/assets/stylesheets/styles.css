@@ -1,4 +1,4 @@
-body, html {
+body {
   background: #F9F9F9;
   height: 100%;
 }
@@ -289,7 +289,3 @@ input.button {
   background: #ee6f19;
   color: white;
 }
-
-/*.top-bar-section input {
-  background: #008CBA
-}*/
