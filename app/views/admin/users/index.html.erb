@@ -11,12 +11,6 @@
           <%= button_to "Delete User", admin_user_path(user), class: "button", method: "delete", id: user.id %>
         <% end %>
       </div>
-      <div class="text-center">
-        <a href="<%= new_user_path %>" class="button">Add a New User!</a>
-      </div>
-      <div class="text-center">
-        <a href="<%= users_path %>" class="button">All Users</a>
-      </div>
       <%= paginate @users %>
     </div>
   </div>
