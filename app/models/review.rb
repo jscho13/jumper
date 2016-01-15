@@ -13,7 +13,7 @@ class Review < ActiveRecord::Base
   has_many :votes
 
   include PgSearch
-  pg_search_scope :search_by_review_body,
+  pg_search_scope :search_by_review,
                   against: :review_body,
                   using: { tsearch: { prefix: true } }
 
