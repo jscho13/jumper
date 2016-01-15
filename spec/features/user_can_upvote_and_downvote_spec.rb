@@ -12,7 +12,6 @@ feature "user sees a list of reviews for the given acitivty" do
   let!(:user) { FactoryGirl.create(:user) }
 
   scenario "upvote button counts vote +1" do
-    binding.pry
     sign_in_as(user)
     visit venue_path(venue)
     page.find_by_id("review-#{review.id}").find_button("helpful").click
