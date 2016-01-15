@@ -16,4 +16,12 @@ class ApplicationController < ActionController::Base
       raise ActionController::RoutingError.new("Not Found")
     end
   end
+
+  def after_sign_in_path_for(user)
+    venues_path
+  end
+
+  def after_sign_out_path_for(user)
+    venues_path
+  end
 end

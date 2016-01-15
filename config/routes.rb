@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   get '/search' => 'search#index'
 
   devise_for :users
+
+  as :user do
+    get 'users', :to => 'venues#index', :as => :user_root
+  end
+
   resources :users
   resources :venues do
     resources :reviews

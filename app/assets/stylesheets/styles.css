@@ -234,7 +234,7 @@ input[type=submit] {
 
 .paginate-center {
   width: 100%;
-  padding-left: 22em;
+  padding-left: 27em;
 }
 
 .footer {
@@ -262,5 +262,5 @@ input[type=submit] {
 }
 
 .venue-options {
-  padding-top: 700px;
+  padding-top: 475px;
 }
