@@ -1,4 +1,4 @@
-<div class="column">
+<div class="show-footer column">
   <h1><%= @venue.venue_name %></h1>
   <p><%= @venue.description %></p>
 
@@ -7,9 +7,13 @@
     <%= button_to "Edit Venue", edit_venue_path, class: "button", method: "get", label: "Edit Venue"%>
   <% end %>
 
-<ul>
-  <%= render @reviews %>
-</ul>
+<h3>Reviews</h3>
+
+<table>
+  <tbody>
+    <%= render @reviews %>
+  </tbody>
+</table>
 
 <div class="text-center">
   <a href="<%= new_venue_review_path(@venue) %>" class="button">Add a New Review</a>

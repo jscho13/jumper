@@ -1,5 +1,10 @@
-body {
+body, html {
   background: #F9F9F9;
+  height: 100%;
+}
+
+input {
+  font-size: 16px;
 }
 
 li {
@@ -238,6 +243,7 @@ input[type=submit] {
 }
 
 .footer {
+  position: fixed;
   background-color: #ee6f19;
   width: 100%;
   height: 100px;
@@ -251,16 +257,10 @@ input[type=submit] {
   font-family: 'Open Sans', sans-serif;
 }
 
-#absolute-footer {
-  position: fixed;
-  background-color: #ee6f19;
-  width: 100%;
-  height: 100px;
-  padding: 10px 10px 0 10px;
-  bottom: 0;
-  left: 0;
-}
-
 .venue-options {
   padding-top: 475px;
+}
+
+.show-footer {
+  margin-bottom: 15%;
 }
