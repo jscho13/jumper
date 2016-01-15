@@ -20,6 +20,10 @@ li {
   margin-bottom: 0px;
 }
 
+.panel h4 {
+  font-family: "Righteous", sans-serif;
+}
+
 .row {
   background-color: #F9F9F9;
 }
@@ -27,6 +31,10 @@ li {
 .subheader {
   overflow: hidden;
   height: 70px;
+}
+
+p.subheader {
+  font-size: .8rem;
 }
 
  /* Off-Canvas */
@@ -128,7 +136,6 @@ li {
      width: auto;
    }
 
-
    /* Side-Nav Bar */
 
    .right-off-canvas-toggle .menu {
@@ -183,8 +190,18 @@ input[type=submit] {
    cursor:pointer;
    -webkit-border-radius: 5px;
    border-radius: 5px;
-   color:#008CBA;
-   background-color: #F9F9F9;
+   color: white;
+   background-color: #ee6f19;
+}
+.top-bar input[type=submit] {
+   padding:5px 15px;
+   background:#ccc;
+   border:0 none;
+   cursor:pointer;
+   -webkit-border-radius: 5px;
+   border-radius: 5px;
+   color: white;
+   background: #008CBA;
 }
 
 .vote-wrap {
@@ -203,9 +220,11 @@ input[type=submit] {
   height: auto;
 }
 
-.venue-header h1 {
+.title-header h1 {
   text-align: center;
-  color: #008CBA;
+  color: #008cba;
+  font-family: "Righteous", sans-serif;
+  font-size: 3.32rem;
 }
 
 .container { position:relative; }
@@ -239,7 +258,7 @@ input[type=submit] {
 
 .paginate-center {
   width: 100%;
-  padding-left: 27em;
+  padding-left: 26em;
 }
 
 .footer {
@@ -250,6 +269,7 @@ input[type=submit] {
   padding: 10px 10px 0 10px;
   bottom: 0;
   left: 0;
+  margin-top: 2rem;
 }
 
 .footer h4 {
@@ -264,3 +284,12 @@ input[type=submit] {
 .show-footer {
   margin-bottom: 15%;
 }
+
+input.button {
+  background: #ee6f19;
+  color: white;
+}
+
+/*.top-bar-section input {
+  background: #008CBA
+}*/
