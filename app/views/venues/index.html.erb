@@ -1,19 +1,19 @@
-<div class="full-height bg-img">
+<div class="show-footer bg-img">
   <div class="floating-container">
     <div class="row title-header">
       <h1 class="animated fadeInDown">Venues</h1>
     </div>
   </div>
-  <%= render @venues %>
-</div>
-<div class="venue-options">
-  <div class="text-center">
-    <a href="<%= new_venue_path %>" class="button">Add a New Venue!</a>
-  </div>
-  <div class="text-center">
-    <a href="<%= venues_path %>" class="button">All Venues</a>
-  </div>
-  <div class="paginate-center">
-    <%= paginate @venues %>
+    <%= render @venues %>
+  <div class="venue-options">
+    <div class="text-center">
+      <a href="<%= new_venue_path %>" class="button">Add a New Venue!</a>
+    </div>
+    <div class="text-center">
+      <a href="<%= venues_path %>" class="button">All Venues</a>
+    </div>
+    <div class="paginate-center">
+      <%= paginate @venues %>
+    </div>
   </div>
 </div>

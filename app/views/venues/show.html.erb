@@ -1,4 +1,4 @@
-<div class="title-header">
+<div class="title-header show-footer">
   <h1><%= @venue.venue_name %></h1>
   <p><%= @venue.description %></p>
 
@@ -11,9 +11,13 @@
   </div>
   <% end %>
 
-<ul>
-  <%= render @reviews %>
-</ul>
+<h3>Reviews</h3>
+
+<table>
+  <tbody>
+    <%= render @reviews %>
+  </tbody>
+</table>
 
 <div class="text-center">
   <a href="<%= new_venue_review_path(@venue) %>" class="button">Add a New Review</a>
