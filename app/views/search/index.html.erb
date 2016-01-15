@@ -18,7 +18,7 @@
           <div class="row">
             <div class="floating-container">
               <% @reviews.each do |review| %>
-                <h4><%= link_to review.review_body, venue_path(review.venue) %></h4>
+                <p><%= link_to review.review_body, venue_path(review.venue) %></p>
               <% end %>
             </div>
           </div>
