@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
 
   include PgSearch
   pg_search_scope :search_by_username,
-                  against: :username,
-                  using: { tsearch: { prefix: true } }
+                   against: :username,
+                   using: { tsearch: { prefix: true } }
 
   def admin?
     role == "admin"

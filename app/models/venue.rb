@@ -19,9 +19,14 @@ class Venue < ActiveRecord::Base
   belongs_to :user
 
   include PgSearch
-  pg_search_scope :search_by_venue,
-                  against: [:venue_name, :street_name, :state, :zip_code, :city, :description],
-                  using: { tsearch: { prefix: true } }
+  pg_search_scope :venue_search,
+                   against: [:venue_name,
+                             :street_name,
+                             :state,
+                             :zip_code,
+                             :city,
+                             :description],
+                   using: { tsearch: { prefix: true } }
 
   def deletable_by(user)
     return false if user.nil?

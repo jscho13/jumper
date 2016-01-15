@@ -17,6 +17,7 @@ feature "user does not have admin access" do
     expect(page).to_not have_content("Delete Venue")
     expect(page).to_not have_content("Delete Review")
 
-    expect { visit admin_users_path }.to raise_error(ActionController::RoutingError)
+    expect { visit admin_users_path
+    }.to raise_error(ActionController::RoutingError)
   end
 end
