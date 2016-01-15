@@ -1,24 +1,35 @@
 <div class="full-height bg-img">
-<div class="row">
-  <div class="small-12 medium-10 medium-centered large-8 large-centered columns">
-    <h1>Venue Results</h1>
-    <div class="row">
+  <div class="row">
+    <div class="small-12 medium-10 medium-centered large-8 large-centered columns">
       <% if @venues %>
-        <div class="floating-container">
-          <%= render @venues %>
-        </div>
+        <% unless @venues.empty? %>
+          <h1>Venue Results</h1>
+          <div class="row">
+            <div class="floating-container">
+              <%= render @venues %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if @reviews %>
+        <% unless @reviews.empty? %>
+          <h1>Review Results</h1>
+          <div class="row">
+            <div class="floating-container">
+              <% @reviews.each do |review| %>
+                <h4><%= link_to review.review_body, venue_path(review.venue) %></h4>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <%if @venues && @reviews %>
+        <%if @venues.empty? && @reviews.empty? %>
+          <h1>No Results Found</h1>
+        <% end %>
       <% end %>
     </div>
-    <h1>Review Results</h1>
-    <div class="row">
-      <% if @reviews %>
-        <div class="floating-container">
-          <% @reviews.each do |review| %>
-            <h4><%= link_to review.review_body, venue_path(review.venue) %></h4>
-          <% end %>
-        </div>
-      <% end %>
-    <div>
   </div>
-</div>
 </div>
