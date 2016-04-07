@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides
- *= require animate
+ *= require animate.min
  */
 
 @import url(https://fonts.googleapis.com/css?family=Righteous|Open+Sans|Raleway)

@@ -1,29 +1,30 @@
-
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title><%= content_for?(:title) ? yield(:title) : "Jumper" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Jumper" %></title>
 
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "vendor/modernizr" %>
-  <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
 
-<body>
-  <%= render "layouts/top_bar" %>
-  <div class="row">
-    <div class="container">
-      <video autoplay loop id="bgvid">
-        <source src="https://dl.dropboxusercontent.com/u/87789399/PEOPLE%20ARE%20AWESOME%202015.mp4" type="video/mp4">
-      </video>
-      <div class="animated fadeInDown small-8 small-centered columns overlay">
-        <a href="/venues" style="font-family: 'Righteous', cursive;">Jump<u class="animated bounce infinite">e</u>r</a>
+  <body>
+    <%= render "layouts/top_bar" %>
+    <div class="row">
+      <div class="container">
+        <video autoplay loop id="bgvid">
+          <source src="https://dl.dropboxusercontent.com/u/87789399/PEOPLE%20ARE%20AWESOME%202015.mp4" type="video/mp4">
+        </video>
+        <div class="small-8 small-centered columns overlay">
+          <a href="/venues" style="font-family: 'Righteous', cursive;">
+            Jump<div class="animated bounce infinite" style="display: inline-block;"><u>e</u></div>r
+          </a>
+        </div>
       </div>
+      <%= render "layouts/footer" %>
     </div>
-    <%= render "layouts/footer" %>
-  </div>
-</body>
+  </body>
 </html>
