@@ -1,3 +1,8 @@
+# Looking back:
+# Having this code delete or add votes via the votes controller would have been much better.
+# This method has too many nested if/else loops that makes this impossible to read.
+# On another note, we were building basic API's after two months of coding which is also ridiculous.
+
 class Api::ReviewsController < ActionController::Base
   before_action :authenticate_user!, except: [:index, :show]
 
